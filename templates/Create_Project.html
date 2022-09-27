@@ -1,11 +1,13 @@
 <html>
-   <title>Create Project</title>
+   <head>
+      <title>Create Project</title>
+   </head>
    <h1 style="font-size: 55; text-align: center; color: white;">
-      <img src="img/UTEP_BLUE.png" alt="logo" class="utep_logo"/>
-      <img src="img/DEVCOM.png" alt="logo" class="devcom_logo"/>
+      <img src="{{ url_for('static', filename = 'img/UTEP_BLUE.png')}}" alt="logo" class="utep_logo"/>
+      <img src= "{{ url_for('static', filename = 'img/DEVCOM.png')}}" alt="logo" class="devcom_logo"/>
       Create Project
    </h1>
-   <link type="text/css" rel="stylesheet" href="Create_Project.css">
+   <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='Create_Project.css')}}">
    <body>
       <form>
          <p>Project Initials:</p>

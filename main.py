@@ -1,22 +1,21 @@
-from flask import Flask, render_template, request
+
+from flask import Flask, redirect, url_for, render_template
 
 app = Flask(__name__)
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/")
 def home():
-    if request.method == 'POST':
-        if request.form.get('action1') == 'Open Project':
-            print("Hello im value 1")
-        elif  request.form.get('action2') == 'Create Project':
-            print("Hello im value 2")
-        else:
-            pass # unknown
-    elif request.method == 'GET':
-        return render_template('main_page.html')
-    
     return render_template("main_page.html")
+
+#Just in case we dont have "/main_page"
+@app.route("/main_page")
+def main_page():
+    return render_template("main_page.html")
+
+
+@app.route("/create_project")
+def create_project():
+    return render_template("Create_Project.html")
 
 if __name__ == "__main__":
     app.run()
-
-

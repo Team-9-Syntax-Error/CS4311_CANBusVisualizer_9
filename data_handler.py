@@ -11,7 +11,7 @@ class DataHandler:
     def __init__(self):
         if os.name == "nt":
             self.os_char = '\\'
-        self.dir_creator()
+        self.create_dirs()
 
     def get_data(self, key):
         return self.current_proj_config.get_data(key)
@@ -41,7 +41,14 @@ class DataHandler:
     def create_path(self, data_type, file_name):
         return "{}{}{}.json".format(self.paths[data_type], self.os_char, file_name)
 
-    def dir_creator(self):
+    def create_dirs(self):
         for path in self.paths:
             if not os.path.exists(self.paths[path]):
                 os.mkdir(self.paths[path])
+
+    def path_de_traverse(self, path, levels=1):
+        split_path = path.split(self.os_char)
+        final_path = self.os_char.join(split_path[:-levels])
+        if final_path == '':
+            raise Exception("Path Out of Bounds")
+        return final_path

@@ -42,11 +42,4 @@ class DataObject:
             if type(d.get(di)) is dict:
                 value = DataObject.recursive_get(key, d.get(di))
         return value
-        
-    def path_back(self, path, levels=1):
-        split_path = path.split(self.os_char)
-        final_path = self.os_char.join(split_path[:-levels])
-        if final_path == '':
-            raise Exception("Path Out of Bounds")
-        return final_path
     """

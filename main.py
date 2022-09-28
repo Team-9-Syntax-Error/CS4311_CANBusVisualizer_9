@@ -1,7 +1,12 @@
 
 from flask import Flask, redirect, url_for, render_template
+from datetime import date
 
 app = Flask(__name__)
+
+
+today = date.today()
+today = today.strftime("%m/%d/%Y")
 
 @app.route("/")
 def main_page():
@@ -15,7 +20,7 @@ def home():
 
 @app.route("/create_project")
 def create_project():
-    return render_template("Create_Project.html")
+    return render_template("Create_Project.html", date=today)
 
 if __name__ == "__main__":
     app.run()

@@ -1,0 +1,8 @@
+body {
+    font-size: 20px;
+    display: block;
+    color: white;
+    font-family: "Helvetica", Sans-Serif;
+    background-image: url('img/Bg_Image1.jpg');
+    display: inline-block;
+}

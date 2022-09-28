@@ -14,13 +14,15 @@ ch = ConfigHandler()
 def main_page():
     return render_template("main_page.html")
 
-
 # Just in case we dont have "/main_page"
 # This one does nothing - Victor Herrera
 @app.route("/home")
 def home():
     return render_template("home_page.html")
 
+@app.route("/upload_file", methods=["GET", "POST"])
+def upload_file():
+    return render_template("upload_file.html")
 
 # Project Page
 @app.route("/project")
@@ -28,7 +30,7 @@ def project_page():
     return render_template("project_page.html")
 
 
-# Create Projec Page I made these comments for mysef so I dont get confused.- Victor Herrera
+# Create Project Page I made these comments for mysef so I dont get confused.- Victor Herrera
 @app.route("/create_project")
 def create_project():
     return render_template("Create_Project.html", date=today)

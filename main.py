@@ -15,13 +15,6 @@ ch = ConfigHandler()
 def main_page():
     return render_template("main_page.html")
 
-# Just in case we dont have "/main_page"
-# This one does nothing - Victor Herrera
-
-@app.route("/home")
-def home():
-    return render_template("home_page.html")
-
 # This handles uploading the project files
 # NEEDS REFINEMENT --- LOOK FOR UPLOAD JSON FILES OR PROJECT FOLDER
 app.config["UPLOAD_PATH"] = "C:/"

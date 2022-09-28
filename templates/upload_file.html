@@ -1,9 +1,12 @@
 <html>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='upload_file.css')}}">
-    <body>
+<body>
     <form action="/upload_file" method="POST" enctype="multipart/form-data">
         <input type="file" name="filename" multiple>
         <input type="submit" value="Submit">
     </form>
-    </body>
+    <div style="width: 500px;">
+        <button onclick="window.location='/';">Go Back</button>
+     </div>
+</body>
 </html>

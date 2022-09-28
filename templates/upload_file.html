@@ -1,4 +1,12 @@
 <html>
+    <head>
+        <title>Upload File</title>
+        <h1 style="font: 55; text-align: center; color: white">
+            <img src="{{ url_for('static', filename = 'img/UTEP_BLUE.png')}}" alt="logo" class="utep_logo"/>
+            <img src= "{{ url_for('static', filename = 'img/DEVCOM.png')}}" alt="logo" class="devcom_logo"/>
+            Open Project
+        </h1>
+    </head>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='upload_file.css')}}">
 <body>
     <form action="/upload_file" method="POST" enctype="multipart/form-data">

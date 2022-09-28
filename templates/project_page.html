@@ -9,6 +9,22 @@
    </h1>
    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='Project_Page.css')}}">
    <body>
+      <!--This is handles the dropdown options-->
+      <!-- File - View - Packets -->
+      <div class="dropdown1">
+         <button class="dropbtn">File</button>
+         <div class="dropdown-content">
+            <a href="#">Save Project</a>
+            <a href="#">Open Project</a>
+         </div>
+      </div>
+      <div class="dropdown2">
+      <button class="dropbtn">View</button>
+         <div class="dropdown-content2">
+            <a href="#">Save Project</a>
+            <a href="#">Open Project</a>
+         </div>
+      </div>
       <button type="button" class="button1" onclick="window.location='edit_config';">
          <span class="button__text1">Edit Configurations</span>
          <span class="button__icon">

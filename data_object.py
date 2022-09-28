@@ -3,7 +3,9 @@ import json
 
 class DataObject:
 
-    def __init__(self, data, data_type):
+    def __init__(self, data=None, data_type="Data Type Missing"):
+        if data is None:
+            data = {data_type: {"No Data": ""}}
         self.data_dict = data
         self.data_type = data_type
         self.file_name = self.find_name()
@@ -14,8 +16,8 @@ class DataObject:
         for key in n_dict:
             return n_dict[key]
 
-    def get_data(self):
-        return self.data_dict
+    def get_data(self, key):
+        return self.data_dict[self.data_type][key]
 
     def get_json_data(self):
         return json.dumps(self.data_dict, indent=4)

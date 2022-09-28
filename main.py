@@ -10,17 +10,20 @@ today = today.strftime("%m/%d/%Y")
 
 ch = ConfigHandler()
 
-
+# This is our Main Page / First Page that appears
 @app.route("/")
 def main_page():
     return render_template("main_page.html")
 
 # Just in case we dont have "/main_page"
 # This one does nothing - Victor Herrera
+
 @app.route("/home")
 def home():
     return render_template("home_page.html")
 
+# This handles uploading the project files
+# NEEDS REFINEMENT --- LOOK FOR UPLOAD JSON FILES OR PROJECT FOLDER
 app.config["UPLOAD_PATH"] = "C:/"
 @app.route("/upload_file", methods=["GET", "POST"])
 def upload_file():
@@ -32,6 +35,7 @@ def upload_file():
     return render_template("upload_file.html", msg="Select Project to Open")
 
 # Project Page
+# This is the page where the users is going to be working
 @app.route("/project")
 def project_page():
     return render_template("project_page.html")
@@ -44,11 +48,12 @@ def create_project():
 
 
 # Edit Configuration page
+# When working on the project this will allow the user to modify the configuration
 @app.route("/edit_config")
 def edit_project():
     return render_template("edit_config.html", date=today)
 
-
+# data handler?
 @app.route("/data_handler", methods=['POST', 'GET'])
 def data_handler():
     if request.method == 'POST':

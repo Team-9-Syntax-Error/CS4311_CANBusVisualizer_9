@@ -28,21 +28,16 @@ body {
     background-color: white;
     color: black;
     text-align: center;
-    display: inline-block;
     padding: 20px;
     font-size: 18px;
     font: "Helvetica", "Sans-Serif";
     align-items: center;
 }
 
-.button1 {
-    border-radius: 12%;
-    width: 200px;
-    height: 100px;
+.button:hover {
+    background: grey;
 }
 
-.button2 {
-    border-radius: 12px;
-    width: 200px;
-    height: 100px;
+.button:active {
+    background: grey;
 }

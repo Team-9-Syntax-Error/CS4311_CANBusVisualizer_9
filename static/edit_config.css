@@ -1,0 +1,76 @@
+header {
+    width: 964px;
+    height: 90px;
+}
+
+.utep_logo {
+    float: left;
+    max-width: 8%;
+    max-height: 8%;
+}
+
+.devcom_logo {
+    float: right;
+    max-width: 10%;
+    max-height: 10%;
+}
+
+body {
+    font-size: 20px;
+    display: block;
+    color: white;
+    font-family: "Helvetica", Sans-Serif;
+    background-image: url('img/Bg_Image1.jpg');
+    display: inline-block;
+}
+
+.button1,.button2 {
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 12px;
+    font: "Helvetica", "Sans-Serif";
+    width: 200px;
+    height: 100px;
+}
+
+.button1 {
+    position: absolute;
+    bottom: 350px;
+    left: 500px;
+}
+
+.button__text1 {
+    position: absolute;
+    bottom: 10px;
+    left: 35px;
+}
+
+.button__text {
+    position: absolute;
+    bottom: 10px;
+    left: 42px;
+}
+
+.button__icon {
+    position: absolute;
+    bottom: 45px;
+    left: 75px;
+    font-size: 50px;
+}
+
+.button2 {
+    position: absolute;
+    bottom: 350px;
+    left: 800px;
+}
+
+.button1:hover, .button2:hover {
+    background: grey;
+}
+
+.button1:active,.button2:active {
+    background: grey;
+}

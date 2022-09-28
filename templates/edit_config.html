@@ -1,0 +1,37 @@
+<html>
+   <head>
+      <title>Edit Configurations</title>
+   </head>
+   <h1 style="font-size: 55; text-align: center; color: white;">
+      <img src="{{ url_for('static', filename = 'img/UTEP_BLUE.png')}}" alt="logo" class="utep_logo"/>
+      <img src= "{{ url_for('static', filename = 'img/DEVCOM.png')}}" alt="logo" class="devcom_logo"/>
+      Edit Configurations
+   </h1>
+   <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='edit_config.css')}}">
+   <body>
+      <form>
+         <p>Project Initials:</p>
+         <p><input type = "text" name = "project_initials" /></p>
+         <p>Analyst Initials:</p>
+         <p><input type = "text" name = "analyst_initials" /></p>
+         <p>Event Name:</p>
+         <p><input type = "text" name = "event_name" /></p>
+         <p>Event Date:</p>
+         <p><input type = "text" name = "event_date" value={{date}} /></p>
+         <p>CAN Connector ID:</p>
+         <p><input type = "text" name = "can_connector_id" value="XXXX"/></p>
+         <p> Vehicle ID:</p>
+         <p><input type = "text" name = "vehicle_id" value="XXXX"/></p>
+         <p>Baud Rate:</p>
+         <p><input type = "text" name = "baud_rate" value="115200"/></p>
+         <p>DBC File Name</p>
+         <p><input type = "text" name = "dbc_file_name" value=""/></p>
+         <p>Black List File Name</p>  
+         <p><input type = "text" name = "bl_file_name" value=""/></p>
+      </form>   
+      <div style="width: 500px;">
+         <button onclick="history.back()">Go Back</button>
+         <button type="submit" value="Done">Done</input>
+      </div>
+   </body>
+</html>

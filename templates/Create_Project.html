@@ -9,7 +9,9 @@
    </h1>
    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='Create_Project.css')}}">
    <body>
-      <form>
+      <form action="/data_handler" method="POST">
+         <p>Project Name:</p>
+         <p><input type = "text" name = "project_name" /></p>
          <p>Project Initials:</p>
          <p><input type = "text" name = "project_initials" /></p>
          <p>Analyst Initials:</p>
@@ -28,10 +30,10 @@
          <p><input type = "text" name = "dbc_file_name" value=""/></p>
          <p>Black List File Name</p>  
          <p><input type = "text" name = "bl_file_name" value=""/></p>
+         <input type="submit" value="Submit">
       </form>   
       <div style="width: 500px;">
          <button onclick="history.back()">Go Back</button>
-         <button type="submit" value="Done">Done</input>
       </div>
    </body>
 </html>

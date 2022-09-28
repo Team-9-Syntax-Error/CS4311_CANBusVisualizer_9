@@ -3,7 +3,7 @@ import os.path
 
 
 # Author: Mark-Anthony Avila
-# Notes: Will add comments later
+# Notes: Will add comments later, some of these functions will be thrown into a more generic file class for opening and writing later
 class ConfigHandler:
     config_data = None
     os_char = "/"

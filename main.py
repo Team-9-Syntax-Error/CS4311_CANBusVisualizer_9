@@ -1,6 +1,7 @@
 from flask import Flask, redirect, url_for, render_template, request
 from datetime import date
 from config_handler import ConfigHandler
+import os
 
 app = Flask(__name__)
 
@@ -20,9 +21,15 @@ def main_page():
 def home():
     return render_template("home_page.html")
 
+app.config["UPLOAD_PATH"] = "C:/"
 @app.route("/upload_file", methods=["GET", "POST"])
 def upload_file():
-    return render_template("upload_file.html")
+    if request.method == 'POST':
+        for f in request.files.getlist('file_name'):
+            #f = request.files['file_name']
+            f.save(os.path.join(app.config['UPLOAD_PATH'], f.filename))
+        return render_template("upload_file.html", msg="Project Uploaded Successfully")
+    return render_template("upload_file.html", msg="Select Project to Open")
 
 # Project Page
 @app.route("/project")

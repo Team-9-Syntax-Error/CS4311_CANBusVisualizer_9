@@ -10,7 +10,16 @@ today = today.strftime("%m/%d/%Y")
 
 dh = DataHandler()
 
-
+#PagePage / Table information is comming
+headings = ("ID", "Time", "Data")
+data = (
+    ("123456", "09/30/2022","Data ExampleX" ),
+    ("987654", "09/30/2022","Data Example2" ),
+    ("456123", "09/30/2022","Data Example3" ),
+)
+@app.route("/")
+def table():
+    return render_template("Project_Page.html", headings=headings, data=data)
 # This is our Main Page / First Page that appears
 @app.route("/")
 def main_page():

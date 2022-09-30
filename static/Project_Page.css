@@ -52,13 +52,14 @@ div button {
     z-index: 1;
   }
   .table{
+    border: 1px solid black;
     border-spacing: 0;
     margin: 1rem;
-    background-color: #f5f5f5;
+    background-color: black;
 
   }
   .table__row:nth-child(even){
-    background-color: aqua;
+    background-color: gray;
   }
   .table__header{
     text-align: left;;

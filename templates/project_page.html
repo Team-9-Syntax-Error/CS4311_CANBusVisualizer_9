@@ -9,6 +9,41 @@
    </h1>
    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='Project_Page.css')}}">
    <body>
+      <!--This is handles the dropdown options-->
+      <!-- File - View - Packets -->
+      <div class="navbar">
+         <!--<a href="#home">Home</a>
+         <a href="#news">News</a>-->
+         <div class="dropdown">
+           <button class="dropbtn">File 
+             <i class="fa fa-caret-down"></i>
+           </button>
+           <div class="dropdown-content">
+             <a href="#">Save Project</a>
+             <a href="#">Open Saved Packets</a>
+           </div>
+         </div> 
+         <div class="dropdown">
+            <button class="dropbtn">View 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="#">Filter Packets</a>
+              <a href="#">Sort Packets</a>
+            </div>
+          </div> 
+          <div class="dropdown">
+            <button class="dropbtn">Packets 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="#">Edit Packet</a>
+              <a href="#">Replay Packet</a>
+              <a href="#">Save Packet</a>
+              <a href="#">Annotate Packet</a>
+            </div>
+          </div> 
+       </div>
       <table class="table">
          <tr class="table__header">
            {% for header in headings %}
@@ -23,22 +58,6 @@
          <tr>      
          {% endfor %}
        </table>
-      <!--This is handles the dropdown options-->
-      <!-- File - View - Packets -->
-      <div class="dropdown1">
-         <button class="dropbtn">File</button>
-         <div class="dropdown-content">
-            <a href="#">Save Project</a>
-            <a href="#">Open Project</a>
-         </div>
-      </div>
-      <div class="dropdown2">
-      <button class="dropbtn">View</button>
-         <div class="dropdown-content2">
-            <a href="#">Save Project</a>
-            <a href="#">Open Project</a>
-         </div>
-      </div>
       <button type="button" class="button1" onclick="window.location='edit_config';">
          <span class="button__text1">Edit Configurations</span>
          <span class="button__icon">

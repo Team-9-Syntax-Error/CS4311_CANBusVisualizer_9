@@ -10,12 +10,12 @@ today = today.strftime("%m/%d/%Y")
 
 dh = DataHandler()
 
-#PagePage / Table information is comming
+#Project Page / Table information is comming
 headings = ("ID", "Time", "Data")
 data = (
-    ("123456", "09/30/2022","Data ExampleX" ),
-    ("987654", "09/30/2022","Data Example2" ),
-    ("456123", "09/30/2022","Data Example3" ),
+    ("123456", "09/30/2022","Data Example 1" ),
+    ("987654", "09/30/2022","Data Example 2" ),
+    ("456123", "09/30/2022","Data Example 3" ),
 )
 @app.route("/")
 def table():

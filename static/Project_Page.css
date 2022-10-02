@@ -14,6 +14,16 @@ header {
     max-width: 10%;
     max-height: 10%;
 }
+.CAN_logo {
+  position: absolute;
+  max-width: 70%;
+  max-height: 70%;
+  top: 500;
+  bottom: 0;
+  left: 200;
+  
+
+}
 
 body {
     font-size: 20px;

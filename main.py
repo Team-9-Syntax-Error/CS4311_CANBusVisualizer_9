@@ -69,4 +69,5 @@ def config_handler():
 
 
 if __name__ == "__main__":
-    app.run()
+    #Allows updates on page without running program over again. 
+    app.run(debug=True)

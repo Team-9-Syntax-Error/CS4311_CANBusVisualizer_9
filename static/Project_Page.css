@@ -21,8 +21,6 @@ header {
   top: 500;
   bottom: 0;
   left: 200;
-  
-
 }
 
 body {
@@ -116,15 +114,16 @@ body {
   }
   .table__header{
     text-align: center;
+
   }
   .table__cell{
     text-align: center;
     padding: 8px;
     border-radius: 10px;
-
   }
 
-  .myBox {
+  .myBox 
+  {
     padding: 5px;
     font: 24px/36px sans-serif;
     width: 1800px;
@@ -133,22 +132,26 @@ body {
     }
     
     /* Scrollbar styles */
-    ::-webkit-scrollbar {
+    ::-webkit-scrollbar 
+    {
     width: 12px;
     height: 12px;
     }
     
-    ::-webkit-scrollbar-track {
+    ::-webkit-scrollbar-track 
+    {
     border: 1px solid yellowgreen;
     border-radius: 10px;
     }
     
-    ::-webkit-scrollbar-thumb {
+    ::-webkit-scrollbar-thumb 
+    {
     background: yellowgreen;  
     border-radius: 10px;
     }
     
-    ::-webkit-scrollbar-thumb:hover {
+    ::-webkit-scrollbar-thumb:hover 
+    {
     background: #88ba1c;  
     }
 

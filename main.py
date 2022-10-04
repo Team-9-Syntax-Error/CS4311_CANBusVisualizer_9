@@ -24,10 +24,6 @@ data = (
 def main_page():
     return render_template("main_page.html")
 
-@app.route("/project_page")
-def table():
-    return render_template("project_page.html", headings=headings, data=data)
-
 # This handles uploading the project files
 # NEEDS REFINEMENT --- LOOK FOR UPLOAD JSON FILES OR PROJECT FOLDER
 app.config["UPLOAD_PATH"] = "C:/"
@@ -56,11 +52,11 @@ def edit_project():
     return render_template("edit_config.html", date=today)
 
 
-@app.route("/config_handler", methods=['POST', 'GET'])
+@app.route("/project_page", methods=['POST', 'GET'])
 def config_handler():
     if request.method == 'POST':
         dh.receive_data("Project Configuration", request.form)
-    return render_template("project_page.html")
+    return render_template("project_page.html", headings=headings, data=data)
 
 
 if __name__ == "__main__":

@@ -16,15 +16,17 @@ data = (
     ("123456", "09/30/2022","Data Example 1" ),
     ("987654", "09/30/2022","Data Example 2" ),
     ("456123", "09/30/2022","Data Example 3" ),
+    ("123456", "09/30/2022","Data Example 1" ),
 )
+
 # This is our Main Page / First Page that appears
 @app.route("/")
 def main_page():
     return render_template("main_page.html")
 
-@app.route("/table")
+@app.route("/project_page")
 def table():
-    return render_template("Project_Page.html", headings=headings, data=data)
+    return render_template("project_page.html", headings=headings, data=data)
 
 # This handles uploading the project files
 # NEEDS REFINEMENT --- LOOK FOR UPLOAD JSON FILES OR PROJECT FOLDER
@@ -39,13 +41,6 @@ def upload_file():
             f.save(os.path.join(app.config['UPLOAD_PATH'], f.filename))
         return render_template("upload_file.html", msg="Project Uploaded Successfully")
     return render_template("upload_file.html", msg="Select Project to Open")
-
-
-# Project Page
-# This is the page where the users is going to be working
-@app.route("/project")
-def project_page():
-    return render_template("project_page.html")
 
 
 # Create Project Page I made these comments for mysef so I dont get confused.- Victor Herrera

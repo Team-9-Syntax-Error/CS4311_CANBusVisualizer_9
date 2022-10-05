@@ -2,6 +2,8 @@ from flask import Flask, redirect, url_for, render_template, request
 from datetime import date
 from data_handler import DataHandler
 import os
+import time
+import can
 
 app = Flask(__name__)
 
@@ -53,11 +55,29 @@ def edit_project():
 
 
 @app.route("/project_page", methods=['POST', 'GET'])
-def config_handler():
+def project_page():
     if request.method == 'POST':
-        dh.receive_data("Project Configuration", request.form)
+        formName = request.form
+        print(formName)
+        if "start" in formName:
+            PrintCan()
+        if "stop" in formName:
+            EndCan()
     return render_template("project_page.html", headings=headings, data=data)
 
+
+def PrintCan():
+    id = 10
+    bustype = 'socketcan'
+    channel = 'vcan0'
+    bus = can.Bus(channel=channel, interface=bustype)
+    for i in range(10):
+        msg = can.Message(arbitration_id=0xc0ffee, data=[id, i, 0, 1, 3, 1, 4, 1], is_extended_id=False)
+        bus.send(msg)
+        print(msg)
+
+def EndCan():
+    print("Ending Can BUS.......")
 
 if __name__ == "__main__":
     #Allows updates on page without running program over again. 

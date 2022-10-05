@@ -32,6 +32,23 @@ body {
     display: inline-block;
 }
 
+.button1, .button2 
+{
+  border-radius: 12px;
+  font-size: 12px;
+  padding: 12px;
+  font-family: "Helvetica", Sans-Serif;
+  background-color: white;
+  color: black;
+  text-align: center;
+  display: inline-block;
+  align-items: center;
+  position: relative;
+  /* Modify position of the buttons */
+  top: 260px; 
+  left: 1780px;
+}
+
 div button {
     font-family: "Helvetica", Sans-Serif;
     display: inline-block;

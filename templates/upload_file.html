@@ -2,21 +2,30 @@
     <head>
         <title>Upload File</title>
         <h1 style="font: 55; text-align: center; color: white">
-            <img src="{{ url_for('static', filename = 'img/UTEP_BLUE.png')}}" alt="logo" class="utep_logo"/>
-            <img src= "{{ url_for('static', filename = 'img/DEVCOM.png')}}" alt="logo" class="devcom_logo"/>
+            <img 
+            src="{{ url_for('static', filename = 'img/UTEP_BLUE.png')}}" alt="logo" class="utep_logo"
+            />
+            <img 
+            src= "{{ url_for('static', filename = 'img/DEVCOM.png')}}" alt="logo" class="devcom_logo"
+            />
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
             Open Project
         </h1>
     </head>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='upload_file.css')}}">
-<body>
-    {{msg}}
-    <br>
-    <form action="/upload_file" method="POST" enctype="multipart/form-data">
-        <input type="file" name="filename" multiple>
-        <input type="submit" value="Submit">
+    <form action = "/upload_file" method = "POST" enctype="multipart/form-data">
+        
+        <div class="form-group">
+        <label>Upload Project</label>
+        <div class="custom-file">
+            <input type="file" class="custom-class-input" name="Upload" id="file" multiple>
+            <label class="custom-class-label" for="file" >Select Documents</label>
+        </div>
+        </div>
+
+        <button type="submit "class="btn btn-primary">Upload Project</button>
+
     </form>
-    <div style="width: 500px;">
-        <button onclick="window.location='/';">Go Back</button>
-     </div>
-</body>
+    <body>
+    </body>
 </html>

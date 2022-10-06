@@ -1,3 +1,4 @@
+from wsgiref.util import request_uri
 from flask import Flask, redirect, url_for, render_template, request
 from datetime import date
 from data_handler import DataHandler
@@ -20,19 +21,18 @@ data = []
 def main_page():
     return render_template("main_page.html")
 
-# This handles uploading the project files
-# NEEDS REFINEMENT --- LOOK FOR UPLOAD JSON FILES OR PROJECT FOLDER
-app.config["UPLOAD_PATH"] = "C:/"
+# Path of where to save
+app.config["UPLOAD_FILES"] = "/GitHub/CS4311_CANBusVisualizer_9/static/img/uploads/"
 
 
 @app.route("/upload_file", methods=["GET", "POST"])
 def upload_file():
-    if request.method == 'POST':
-        for f in request.files.getlist('file_name'):
-            # f = request.files['file_name']
-            f.save(os.path.join(app.config['UPLOAD_PATH'], f.filename))
-        return render_template("upload_file.html", msg="Project Uploaded Successfully")
-    return render_template("upload_file.html", msg="Select Project to Open")
+    if request.method == "POST":
+        if request.files:
+            files = request.files['Upload'] # Access with the tag name 'Upload' that was setup in html
+            print(files)
+        return redirect(request.url)
+    return render_template("upload_file.html")
 
 
 # Create Project Page I made these comments for mysef so I dont get confused.- Victor Herrera

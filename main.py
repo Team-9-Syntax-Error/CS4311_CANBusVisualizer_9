@@ -51,10 +51,11 @@ def edit_project():
 @app.route("/project_page", methods=['POST', 'GET'])
 def project_page():
     if request.method == 'POST':
-        if request.form["submit_button"] == "Stop":
+        myfrom = request.form
+        if "submit_button" in request.form and request.form['submit_button'] == "Stop":
             return render_template("project_page.html", headings=headings, data=[])
 
-        elif request.form["submit_button"] == "Start":
+        elif "submit_button" in request.form and request.form['submit_button'] == "Start":
             mydata = PrintCan()
             for packet in mydata:
                 tokens = packet.split()

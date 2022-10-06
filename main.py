@@ -56,14 +56,18 @@ def edit_project():
 
 @app.route("/project_page", methods=['POST', 'GET'])
 def project_page():
-    if request.method == 'POST':
-        formName = request.form
-        print(formName)
-        if "start" in formName:
-            PrintCan()
-        if "stop" in formName:
-            EndCan()
-    return render_template("project_page.html", headings=headings, data=data)
+
+    try:
+        if request.method == 'POST':
+            formName = request.form
+            print(formName)
+            if "start" in formName:
+                PrintCan()
+            if "stop" in formName:
+                EndCan()
+        return render_template("project_page.html", headings=headings, data=data)
+    except:
+        return render_template("project_page.html", headings=headings, data=data)
 
 
 def PrintCan():

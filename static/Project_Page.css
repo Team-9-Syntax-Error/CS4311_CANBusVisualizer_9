@@ -45,8 +45,8 @@ body {
   align-items: center;
   position: relative;
   /* Modify position of the buttons */
-  top: 260px; 
-  left: 1780px;
+  top: 15px; 
+  left: 1720px;
 }
 
 div button {
@@ -150,7 +150,7 @@ body {
     padding: 5px;
     font: 24px/36px sans-serif;
     width: 1800px;
-    height: 200px;
+    height: 900px;
     overflow: scroll;
     }
     

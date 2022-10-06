@@ -9,17 +9,11 @@ app = Flask(__name__)
 
 today = date.today()
 today = today.strftime("%m/%d/%Y")
-
 dh = DataHandler()
 
 #Project Page / Table information is comming
-headings = ("ID", "Time", "Data")
-data = (
-    ("123456", "09/30/2022","Data Example 1" ),
-    ("987654", "09/30/2022","Data Example 2" ),
-    ("456123", "09/30/2022","Data Example 3" ),
-    ("123456", "09/30/2022","Data Example 1" ),
-)
+headings = ("Timestamp", "ID", "S", "DL")
+data = []
 
 # This is our Main Page / First Page that appears
 @app.route("/")
@@ -56,29 +50,36 @@ def edit_project():
 
 @app.route("/project_page", methods=['POST', 'GET'])
 def project_page():
+    if request.method == 'POST':
+        if request.form["submit_button"] == "Stop":
+            return render_template("project_page.html", headings=headings, data=[])
 
-    try:
-        if request.method == 'POST':
-            formName = request.form
-            print(formName)
-            if "start" in formName:
-                PrintCan()
-            if "stop" in formName:
-                EndCan()
-        return render_template("project_page.html", headings=headings, data=data)
-    except:
-        return render_template("project_page.html", headings=headings, data=data)
+        elif request.form["submit_button"] == "Start":
+            mydata = PrintCan()
+            for packet in mydata:
+                tokens = packet.split()
+                myvar = " ".join(tokens[8:])
+                data.append([tokens[1], tokens[3], tokens[5], myvar])
+            return render_template("project_page.html", headings=headings, data=data)
+        return render_template("project_page.html", headings=headings, data=[])
+    return render_template("project_page.html", headings=headings, data=[])
 
+
+def saveData():
+    pass
 
 def PrintCan():
     id = 10
     bustype = 'socketcan'
     channel = 'vcan0'
     bus = can.Bus(channel=channel, interface=bustype)
+    thisdata = []
     for i in range(10):
         msg = can.Message(arbitration_id=0xc0ffee, data=[id, i, 0, 1, 3, 1, 4, 1], is_extended_id=False)
         bus.send(msg)
-        print(msg)
+        thisdata.append(str(msg))
+
+    return thisdata
 
 def EndCan():
     print("Ending Can BUS.......")

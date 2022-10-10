@@ -1,39 +1,56 @@
 <html>
-   <head>
-      <title>Create Project</title>
-   </head>
-   <h1 style="font-size: 55; text-align: center; color: white;">
-      <img src="{{ url_for('static', filename = 'img/UTEP_BLUE.png')}}" alt="logo" class="utep_logo"/>
-      <img src= "{{ url_for('static', filename = 'img/DEVCOM.png')}}" alt="logo" class="devcom_logo"/>
-      Create Project
+   <h1 style="font-size:55; text-align:center; color:white;">
+      <img class="utep_logo" src="{{ url_for('static', filename = 'img/UTEP_BLUE.png')}}" alt="logo"/>
+      <img class="devcom_logo" src= "{{ url_for('static', filename = 'img/DEVCOM.png')}}" alt="logo"/>
    </h1>
    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='Create_Project.css')}}">
    <body>
-      <form action="/project_page" method="POST">
-         <p>Project Name:</p>
-         <p><input type = "text" name = "project_name" /></p>
-         <p>Project Initials:</p>
-         <p><input type = "text" name = "project_initials" /></p>
-         <p>Analyst Initials:</p>
-         <p><input type = "text" name = "analyst_initials" /></p>
-         <p>Event Name:</p>
-         <p><input type = "text" name = "event_name" /></p>
-         <p>Event Date:</p>
-         <p><input type = "text" name = "event_date" value={{date}} /></p>
-         <p>CAN Connector ID:</p>
-         <p><input type = "text" name = "can_connector_id" value="XXXX"/></p>
-         <p> Vehicle ID:</p>
-         <p><input type = "text" name = "vehicle_id" value="XXXX"/></p>
-         <p>Baud Rate:</p>
-         <p><input type = "text" name = "baud_rate" value="115200"/></p>
-         <p>DBC File Name</p>
-         <p><input type = "text" name = "dbc_file_name" value=""/></p>
-         <p>Black List File Name</p>  
-         <p><input type = "text" name = "bl_file_name" value=""/></p>
-         <input type="submit" value="Submit" name="submit_button">
-      </form>   
-      <div style="width: 500px;">
-         <button onclick="window.location='/';">Go Back</button>
-      </div>
+      <form method="POST" action="/project_page">
+         <div class="create_proj">Create Project</div>
+         <table class="cp_table" border="0px solid black">
+            <tr>
+               <td class="label_col"><label for="project_name">Project Name:</label></td>
+               <td class="input_col"><input type="text" id="project_name" name="project_name"></td>
+            </tr>
+            <tr>
+               <td class="label_col"><label for="project_initials">Project Initials:</label></td>
+               <td class="input_col"><input type="text" id="project_initials" name="project_initials"></td>
+            </tr>
+            <tr>
+               <td class="label_col"><label for="analyst_initials">Analyst Initials:</label></td>
+               <td class="input_col"><input type="text" id="analyst_initials" name="analyst_initials"></td>
+            </tr>
+            <tr>
+               <td class="label_col"><label for="event_name">Event Name:</label></td>
+               <td class="input_col"><input type="text" id="event_name" name="event_name"></td>
+            </tr>
+            <tr>
+               <td class="label_col"><label for="event_date">Event Date:</label></td>
+               <td class="input_col"><input type="text" id="event_date" name="event_date"></td>
+            </tr>
+            <tr>
+               <td class="label_col"><label for="can_connector_id">CAN Connector ID:</label></td>
+               <td class="input_col"><input type="text" id="can_connector_id" name="can_connector_id"></td>
+            </tr>
+            <tr>
+               <td class="label_col"><label for="vehicle_id">Vehicle ID:</label></td>
+               <td class="input_col"><input type="text" id="vehicle_id" name="vehicle_id"></td>
+            </tr>
+            <tr>
+               <td class="label_col"><label for="baud_rate">Baud Rate:</label></td>
+               <td class="input_col"><input type="text" id="baud_rate" name="baud_rate"></td>
+            </tr>
+            <tr>
+               <td class="label_col"><label for="dbc_file_name">DBC File Name:</label></td>
+               <td class="input_col"><input type="text" id="dbc_file_name" name="dbc_file_name"></td>
+            </tr>
+            <tr>
+               <td class="label_col"><label for="bl_file_name">Blacklist File Name:</label></td>
+               <td class="input_col"><input type="text" id="bl_file_name" name="bl_file_name"></td>
+            </tr>
+         </table>
+            <button class="back_btn" type="button" onclick="location.href='/'">Go Back</button>
+            <input class="sub_btn" type="submit" value="Submit">
+      </form>
    </body>
 </html>

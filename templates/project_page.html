@@ -46,8 +46,8 @@
             </div>
           </div> 
         </div>
-       <div class="myBox">
-        <table class="table">
+       <div class="myBox" id="box">
+        <table class="table" id = "tab">
           <tr class="table__header">
             {% for header in headings %}
             <th class="table__cell">{{ header}}</th>
@@ -80,10 +80,13 @@
 
       <script>
         function myfunction_clickevent_read(){
+          $('#tab').load(document.URL +  ' #tab');
             $.ajax({
                 url:"/project_page",
-                context: document.body});}
-    </script>
+                context: document.body,
+            }
+        );}
+      </script>
     
     <script>
         function myfunction_clickevent_write(){
@@ -91,11 +94,6 @@
                 url:"/write",
                 context: document.body});}
     </script>
-
-
-    
-
-     
 
 </body>
 </html>

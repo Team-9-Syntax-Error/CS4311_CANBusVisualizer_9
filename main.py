@@ -2,6 +2,7 @@ from wsgiref.util import request_uri
 from flask import Flask, redirect, url_for, render_template, request
 from datetime import date
 from data_handler import DataHandler
+import can_rw
 import os
 import time
 import can
@@ -17,14 +18,19 @@ headings = ("Timestamp", "ID", "S", "DL")
 data = []
 
 # This is our Main Page / First Page that appears
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def main_page():
-    return render_template("main_page.html")
+    print("We are here123")
+    if request.method == "POST":
+        print("We are here")
+        if "upload_folder" in request.form and request.form['upload_folder'] == "go":
+            return render_template("project_page.html")
+    else:
+        return render_template("main_page.html")
+
 
 # Path of where to save
 app.config["UPLOAD_FILES"] = "/GitHub/CS4311_CANBusVisualizer_9/static/img/uploads/"
-
-
 @app.route("/upload_file", methods=["GET", "POST"])
 def upload_file():
     if request.method == "POST":
@@ -48,23 +54,30 @@ def edit_project():
     return render_template("edit_config.html", date=today)
 
 
-@app.route("/project_page", methods=['POST', 'GET'])
+@app.route("/project_page")
 def project_page():
-    if request.method == 'POST':
-        myfrom = request.form
-        if "submit_button" in request.form and request.form['submit_button'] == "Stop":
-            return render_template("project_page.html", headings=headings, data=[])
+    print('Reading...')
 
-        elif "submit_button" in request.form and request.form['submit_button'] == "Start":
-            mydata = PrintCan()
-            for packet in mydata:
-                tokens = packet.split()
-                myvar = " ".join(tokens[8:])
-                data.append([tokens[1], tokens[3], tokens[5], myvar])
-            return render_template("project_page.html", headings=headings, data=data)
-        return render_template("project_page.html", headings=headings, data=[])
-    return render_template("project_page.html", headings=headings, data=[])
+    while True:
 
+        packet = can_rw.read()
+        print(packet)
+        if packet:
+            packet = str(packet)
+            tokens = packet.split()
+            myvar = " ".join(tokens[8:])
+            print("My data: ", tokens[1], tokens[3], tokens[5], myvar)
+            data.append([tokens[1], tokens[3], tokens[5], myvar])
+            print(data)
+        return render_template("project_page.html", headings=headings, data=data)
+
+
+
+@app.route('/write')
+def write():
+    print('Writing...')
+    can_rw.write()
+    return render_template('project_page.html')
 
 def saveData():
     pass

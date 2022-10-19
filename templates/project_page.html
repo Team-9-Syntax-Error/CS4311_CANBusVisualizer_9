@@ -64,10 +64,33 @@
       </div>
 
 
-      <form action="" method="post">
-        <input type="Submit" class="button2" value = "Stop" name = "submit_button">
-        <input type="Submit" class="button1" value = "Start" name = "submit_button">
-      </form>  
+      <element onload="myfunction_onload">
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+      <button type="submit" class= "button1" onclick='myfunction_clickevent_read()'>Read</button>
+      <button type="submit" class= "button2" onclick='myfunction_clickevent_write()'>Write</button>
+
+      <script>
+        function myfunction_onload(){
+            $.ajax({
+                url: "main.py",
+                 context: document.body
+                })
+            }
+        </script>
+
+      <script>
+        function myfunction_clickevent_read(){
+            $.ajax({
+                url:"/project_page",
+                context: document.body});}
+    </script>
+    
+    <script>
+        function myfunction_clickevent_write(){
+            $.ajax({
+                url:"/write",
+                context: document.body});}
+    </script>
 
 
     

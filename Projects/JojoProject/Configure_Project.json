@@ -1,10 +1,10 @@
 {
     "Project Configuration": {
-        "project_name": "Bob",
-        "project_initials": "bb",
-        "analyst_initials": "bb",
-        "event_name": "baud",
-        "event_date": "09/28/2022",
+        "project_name": "",
+        "project_initials": "",
+        "analyst_initials": "",
+        "event_name": "",
+        "event_date": "10/04/2022",
         "can_connector_id": "XXXX",
         "vehicle_id": "XXXX",
         "baud_rate": "115200",

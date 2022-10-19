@@ -54,12 +54,16 @@ def edit_project():
     return render_template("edit_config.html", date=today)
 
 
+"""
+----------------- EVERYTHING UNDER HERE ARE SCRIPTS THAT MANIPULATE THE PAGES -------------------------
+
+"""
+
+# READS CAN BUS SCRIPT
 @app.route("/project_page")
 def project_page():
     print('Reading...')
-
     while True:
-
         packet = can_rw.read()
         print(packet)
         if packet:
@@ -71,32 +75,33 @@ def project_page():
             print(data)
         return render_template("project_page.html", headings=headings, data=data)
 
-
-
+# WRITE TO CAN BUS SCRIPT
 @app.route('/write')
 def write():
     print('Writing...')
     can_rw.write()
     return render_template('project_page.html')
 
-def saveData():
-    pass
 
-def PrintCan():
-    id = 10
-    bustype = 'socketcan'
-    channel = 'vcan0'
-    bus = can.Bus(channel=channel, interface=bustype)
-    thisdata = []
-    for i in range(10):
-        msg = can.Message(arbitration_id=0xc0ffee, data=[id, i, 0, 1, 3, 1, 4, 1], is_extended_id=False)
-        bus.send(msg)
-        thisdata.append(str(msg))
+# Should access Json File of packets and edit Json file 
+@app.route('/edit')
+def edit():
+    return render_template('project_page.html')
 
-    return thisdata
+# 
+@app.route('/annotate')
+def annotate():
+    return render_template('project_page.html')
 
-def EndCan():
-    print("Ending Can BUS.......")
+# Should replay the saved packet json file
+@app.route('/replay')
+def replay():
+    return render_template('project_page.html')
+
+# Should save a json file of packets refer to print("My data: ", tokens[1], tokens[3], tokens[5], myvar) line of code
+@app.route('/save')
+def save():
+    return render_template('project_page.html')
 
 if __name__ == "__main__":
     #Allows updates on page without running program over again. 

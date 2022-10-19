@@ -39,10 +39,10 @@
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-              <a href="#">Edit Packet</a>
-              <a href="#">Replay Packet</a>
-              <a href="#">Save Packet</a>
-              <a href="#">Annotate Packet</a>
+              <a id = "edit" onclick="myfunction_clickevent_edit()"></a>>Edit Packet</a>
+              <a id = "replay" onclick="myfunction_clickevent_replay()">Replay Packet</a>
+              <a id = "save" onclick="myfunction_clickevent_save()">Save Packet</a>
+              <a id = "annotate" onclick="myfunction_clickevent_annotate()"></a>>Annotate Packet</a>
             </div>
           </div> 
         </div>
@@ -68,6 +68,7 @@
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
       <button type="submit" class= "button1" onclick='myfunction_clickevent_read()'>Read</button>
       <button type="submit" class= "button2" onclick='myfunction_clickevent_write()'>Write</button>
+      
 
       <script>
         function myfunction_onload(){
@@ -94,6 +95,48 @@
                 url:"/write",
                 context: document.body});}
     </script>
+
+
+
+
+
+
+
+<script>
+  function myfunction_clickevent_edit(){
+      $.ajax({
+          url:"/write",
+          context: document.body});}
+</script>
+<script>
+  function myfunction_clickevent_replay(){
+      $.ajax({
+          url:"/write",
+          context: document.body});}
+</script>
+<script>
+  function myfunction_clickevent_save(){
+      $.ajax({
+          url:"/write",
+          context: document.body});}
+</script>
+<script>
+  function myfunction_clickevent_annotate(){
+      $.ajax({
+          url:"/write",
+          context: document.body});}
+</script>
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

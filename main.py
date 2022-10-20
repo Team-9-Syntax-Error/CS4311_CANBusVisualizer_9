@@ -3,6 +3,7 @@ from flask import Flask, redirect, url_for, render_template, request
 from datetime import date
 from data_handler import DataHandler
 import can_rw
+import json
 import os
 import time
 import can
@@ -65,15 +66,19 @@ def project_page():
     print('Reading...')
     while True:
         packet = can_rw.read()
-        print(packet)
         if packet:
             packet = str(packet)
             tokens = packet.split()
             myvar = " ".join(tokens[8:])
-            print("My data: ", tokens[1], tokens[3], tokens[5], myvar)
             data.append([tokens[1], tokens[3], tokens[5], myvar])
-            print(data)
+            writeJson(data)
         return render_template("project_page.html", headings=headings, data=data)
+
+def writeJson(data, filename="01_json_data.json"):
+    with open(filename, "w") as f:
+        json.dump(data, f, indent=4)
+        print("JSON Created...")
+
 
 # WRITE TO CAN BUS SCRIPT
 @app.route('/write')

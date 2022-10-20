@@ -1,3 +1,4 @@
+from lib2to3.pgen2 import token
 from wsgiref.util import request_uri
 from flask import Flask, redirect, url_for, render_template, request
 from datetime import date
@@ -14,9 +15,15 @@ today = date.today()
 today = today.strftime("%m/%d/%Y")
 dh = DataHandler()
 
+# Path 
+path = os.path.dirname(os.path.realpath(__file__))
+os.chdir(path)
+json_folder_path = path + "/json"
+
 #Project Page / Table information is comming
 headings = ("Timestamp", "ID", "S", "DL")
 data = []
+json_data = []
 
 # This is our Main Page / First Page that appears
 @app.route("/", methods=["GET", "POST"])
@@ -71,11 +78,18 @@ def project_page():
             tokens = packet.split()
             myvar = " ".join(tokens[8:])
             data.append([tokens[1], tokens[3], tokens[5], myvar])
-            writeJson(data)
+            #Format for Json
+            json_data.append({
+                'Timestamp' : tokens[1],
+                'ID' : tokens[3],
+                'S' : tokens[5],
+                'DL': myvar
+            })
+            writeJson(json_data)
         return render_template("project_page.html", headings=headings, data=data)
 
-def writeJson(data, filename="01_json_data.json"):
-    with open(filename, "w") as f:
+def writeJson(data, filename = json_folder_path + "01_json_data.json"):
+    with open(filename, "w", encoding = 'utf8') as f:
         json.dump(data, f, indent=4)
         print("JSON Created...")
 

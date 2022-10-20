@@ -9,22 +9,22 @@
    </h1>
    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='Project_Page.css')}}">
    <body>
-      <!--This is handles the dropdown options-->
-      <!-- File - View - Packets -->
+
       <div class="navbar">
-         <!--<a href="#home">Home</a>
-         <a href="#news">News</a>-->
+
+         <!-- DROPDOWN FOR FILE -->
          <div class="dropdown">
            <button class="dropbtn">File 
              <i class="fa fa-caret-down"></i>
            </button>
-           <!--Added drop down Edit Configurations takes to config page-->
            <div class="dropdown-content">
              <a href="#">Save Project</a>
              <a href="#">Open Saved Packets</a>
              <a href="edit_config">Edit Configurations</a>
            </div>
          </div> 
+
+         <!-- DROPDOWN FOR VIEW -->
          <div class="dropdown">
             <button class="dropbtn">View 
               <i class="fa fa-caret-down"></i>
@@ -34,18 +34,23 @@
               <a href="#">Sort Packets</a>
             </div>
           </div> 
+
+          <!-- DROPDOWN FOR PACKETS -->
           <div class="dropdown">
             <button class="dropbtn">Packets 
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-              <a id = "edit" onclick="myfunction_clickevent_edit()"></a>>Edit Packet</a>
+              <a id = "edit" onclick="myfunction_clickevent_edit()">Edit Packet</a>
               <a id = "replay" onclick="myfunction_clickevent_replay()">Replay Packet</a>
               <a id = "save" onclick="myfunction_clickevent_save()">Save Packet</a>
-              <a id = "annotate" onclick="myfunction_clickevent_annotate()"></a>>Annotate Packet</a>
+              <a id = "annotate" onclick="myfunction_clickevent_annotate()">Annotate Packet</a>
             </div>
+
           </div> 
         </div>
+
+
        <div class="myBox" id="box">
         <table class="table" id = "tab">
           <tr class="table__header">
@@ -67,7 +72,7 @@
       <element onload="myfunction_onload">
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
       <button type="submit" class= "button1" onclick='myfunction_clickevent_read()'>Read</button>
-      <button type="submit" class= "button2" onclick='myfunction_clickevent_write()'>Write</button>
+      <button type="submit" class= "button2" onclick='myfunction_clickevent_write()'>Send</button>
       
 
       <script>
@@ -95,11 +100,6 @@
                 url:"/write",
                 context: document.body});}
     </script>
-
-
-
-
-
 
 
 <script>

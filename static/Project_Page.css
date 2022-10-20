@@ -1,30 +1,13 @@
-header {
-  width: 964px;
-  height: 90px;
-}
-
-.utep_logo {
-  float: right;
-  max-width: 5%;
-  max-height: 5%;
-}
-
-.devcom_logo {
-  float: left;
-  max-width: 7%;
-  max-height: 7%;
-}
-
-.CAN_logo {
-  position: absolute;
-  max-width: 70%;
-  max-height: 70%;
-  top: 500;
-  bottom: 0;
-  left: 200;
+h1
+{
+  font-size: 55;
+  text-align: center;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 body {
+  width: 1895;
     font-size: 12px;
     display: block;
     color: white;
@@ -39,6 +22,7 @@ body {
   font-size: 12px;
   padding: 12px;
   font-family: "Helvetica", Sans-Serif;
+  font-weight: bold;
   background-color: white;
   color: black;
   text-align: center;
@@ -46,7 +30,7 @@ body {
   align-items: center;
   position: relative;
   /* Modify position of the buttons */
-  top: 15px; 
+  top: 345px;
   left: 1720px;
 }
 
@@ -65,6 +49,7 @@ body {
   overflow: hidden;
 }
 
+/* Config for dropdown options*/
 .navbar a {
   background-color: gray;
   float: left;
@@ -75,11 +60,13 @@ body {
   text-decoration: none;
 }
 
+/* Dropdown block (Horizontal or vertical) */
 .dropdown {
   float: left;
   overflow: hidden;
 }
 
+/* Dropdown button properties */
 .dropdown .dropbtn 
 {
   font-size: 16px;  
@@ -97,6 +84,8 @@ body {
   background-color: cornflowerblue;
 }
 
+
+/* Content inside the dropdown (Text)*/
 .dropdown-content 
 {
   display: none;
@@ -157,14 +146,26 @@ body {
 
 .myBox 
 {
-position: static;
-top: 200px;
-left: 100px;
+position: fixed;
+top: 550px;
+left: 25px;
 padding: 5px;
 font: 24px/36px sans-serif;
 width: 1850px;
-height: 250px;
+height: 200px;
 overflow: scroll;
+}
+
+.myBox2
+{
+  position: fixed;
+  top: 155px;
+  left: 25px;
+  padding: 5px;
+  font: 24px/36px sans-serif;
+  width: 1850px;
+  height: 320px;
+  overflow: scroll;
 }
 
 /* Scrollbar styles */

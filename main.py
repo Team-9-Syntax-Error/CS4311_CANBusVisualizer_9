@@ -73,6 +73,16 @@ def project_page():
     print('Reading...')
     while True:
         packet = can_rw.read()
+        writeToTable(packet)
+        writeJson(json_data)
+        return render_template("project_page.html", headings=headings, data=data)
+
+def writeJson(data, filename = json_folder_path + "01_json_data.json"):
+    with open(filename, "w", encoding = 'utf8') as f:
+        json.dump(data, f, indent=4)
+        print("JSON Created...")
+
+def writeToTable(packet):
         if packet:
             packet = str(packet)
             tokens = packet.split()
@@ -85,13 +95,6 @@ def project_page():
                 'S' : tokens[5],
                 'DL': myvar
             })
-            writeJson(json_data)
-        return render_template("project_page.html", headings=headings, data=data)
-
-def writeJson(data, filename = json_folder_path + "01_json_data.json"):
-    with open(filename, "w", encoding = 'utf8') as f:
-        json.dump(data, f, indent=4)
-        print("JSON Created...")
 
 
 # WRITE TO CAN BUS SCRIPT

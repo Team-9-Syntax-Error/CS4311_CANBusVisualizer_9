@@ -1,13 +1,10 @@
 <html>
    <head>
-      <title>Project</title>
+      <title>Project Page</title>
    </head>
-   <h1 style="font-size: 55; text-align: center; color: white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">
-      <img src="{{ url_for('static', filename = 'img/UTEP_BLUE.png')}}" alt="logo" class="utep_logo"/>
-      <img src= "{{ url_for('static', filename = 'img/DEVCOM.png')}}" alt="logo" class="devcom_logo"/>
-      Project
-   </h1>
+   <h1>Project</h1>
    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='Project_Page.css')}}">
+   
    <body>
 
       <div class="navbar">
@@ -50,7 +47,7 @@
           </div> 
         </div>
 
-
+      <!-- CONTAINER FOR PACKET TABLE -->
        <div class="myBox" id="box">
         <table class="table" id = "tab">
           <tr class="table__header">
@@ -68,6 +65,9 @@
         </table>
       </div>
 
+      <!-- CONTAINER FOR MAP -->
+      <div class="myBox2" id="box2">
+      </div> 
 
       <element onload="myfunction_onload">
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
@@ -108,6 +108,7 @@
           url:"/edit",
           context: document.body});}
 </script>
+
 <script>
   function myfunction_clickevent_replay(){
       $.ajax({

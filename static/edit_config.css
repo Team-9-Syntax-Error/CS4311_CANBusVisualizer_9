@@ -4,15 +4,15 @@ header {
 }
 
 .utep_logo {
-    float: left;
-    max-width: 5%;
-    max-height: 5%;
+    float: right;
+    max-width: 7%;
+    max-height: 7%;
 }
 
 .devcom_logo {
-    float: right;
-    max-width: 10%;
-    max-height: 10%;
+    float: left;
+    max-width: 7%;
+    max-height: 7%;
 }
 
 body {

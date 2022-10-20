@@ -1,19 +1,20 @@
 header {
-    width: 964px;
-    height: 90px;
+  width: 964px;
+  height: 90px;
 }
 
 .utep_logo {
-    float: left;
-    max-width: 5%;
-    max-height: 5%;
+  float: right;
+  max-width: 5%;
+  max-height: 5%;
 }
 
 .devcom_logo {
-    float: right;
-    max-width: 7%;
-    max-height: 7%;
+  float: left;
+  max-width: 7%;
+  max-height: 7%;
 }
+
 .CAN_logo {
   position: absolute;
   max-width: 70%;
@@ -24,7 +25,7 @@ header {
 }
 
 body {
-    font-size: 20px;
+    font-size: 12px;
     display: block;
     color: white;
     font-family: "Helvetica", Sans-Serif;
@@ -79,7 +80,8 @@ body {
   overflow: hidden;
 }
 
-.dropdown .dropbtn {
+.dropdown .dropbtn 
+{
   font-size: 16px;  
   border: none;
   outline: none;
@@ -90,11 +92,13 @@ body {
   margin: 0;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
+.navbar a:hover, .dropdown:hover .dropbtn 
+{
   background-color: cornflowerblue;
 }
 
-.dropdown-content {
+.dropdown-content 
+{
   display: none;
   position: absolute;
   background-color: white;
@@ -103,7 +107,8 @@ body {
   z-index: 1;
 }
 
-.dropdown-content a {
+.dropdown-content a 
+{
   float: none;
   color: white;
   padding: 12px 16px;
@@ -112,71 +117,76 @@ body {
   text-align: left;
 }
 
-.dropdown-content a:hover {
+.dropdown-content a:hover 
+{
   background-color: cornflowerblue;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content 
+{
   display: block;
 }
-  .table{
-    text-align: center;
-    border: 1px solid rgb(45, 80, 233);
-    border-radius: 10px;
-    border-spacing: 5px;
-    margin: 1rem;
-    background-color: #6da9e6;
-    width: 95%;
 
-  }
-  .table__row:nth-child(even){
-    background-color: #778899;
-  }
-  .table__header{
-    text-align: center;
+.table 
+{
+  text-align: center;
 
-  }
-  .table__cell{
-    text-align: center;
-    padding: 8px;
-    border-radius: 10px;
-  }
+  border-radius: 15px;
+  border-spacing: 5px;
+  margin: 1rem;
+  background-color: #6da9e6;
+  width: 98%;
+}
 
-  .myBox 
-  {
-    position: absolute;
-    top: 200px;
-    left: 80px;
-    padding: 5px;
-    font: 24px/36px sans-serif;
-    width: 1800px;
-    height: 900px;
-    overflow: scroll;
-    }
-    
-    /* Scrollbar styles */
-    ::-webkit-scrollbar 
-    {
-    width: 12px;
-    height: 12px;
-    }
-    
-    ::-webkit-scrollbar-track 
-    {
-    border: 1px solid yellowgreen;
-    border-radius: 10px;
-    }
-    
-    ::-webkit-scrollbar-thumb 
-    {
-    background: yellowgreen;  
-    border-radius: 10px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover 
-    {
-    background: #88ba1c;  
-    }
+.table__row:nth-child(even) 
+{
+  background-color: #778899;
+}
 
+.table__header
+{
+  text-align: center;
+}
 
+.table__cell
+{
+  text-align: center;
+  padding: 8px;
+  border-radius: 10px;
+}
 
+.myBox 
+{
+position: static;
+top: 200px;
+left: 100px;
+padding: 5px;
+font: 24px/36px sans-serif;
+width: 1850px;
+height: 250px;
+overflow: scroll;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar 
+{
+width: 12px;
+height: 12px;
+}
+
+::-webkit-scrollbar-track 
+{
+border: 1px solid yellowgreen;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb 
+{
+background: yellowgreen;  
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover 
+{
+background: #88ba1c;  
+}

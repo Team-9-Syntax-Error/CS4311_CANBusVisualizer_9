@@ -61,7 +61,7 @@ def edit_project():
 """
 
 # READS CAN BUS SCRIPT
-@app.route("/project_page")
+@app.route("/project_page", methods=["GET", "POST"])
 def project_page():
     print('Reading...')
     while True:

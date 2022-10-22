@@ -71,8 +71,7 @@
 
       <element onload="myfunction_onload">
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-      <button type="submit" class= "button1" onclick='myfunction_clickevent_read()'>Read</button>
-      <button type="submit" class= "button2" onclick='myfunction_clickevent_write()'>Send</button>
+      <button type="submit" class= "button2" onclick='myfunction_clickevent_send()'>Send</button>
       
 
       <script>
@@ -83,21 +82,12 @@
                 })
             }
         </script>
-
-      <script>
-        function myfunction_clickevent_read(){
-          $('#tab').load(document.URL +  ' #tab');
-            $.ajax({
-                url:"/project_page",
-                context: document.body,
-            }
-        );}
-      </script>
     
     <script>
-        function myfunction_clickevent_write(){
+        function myfunction_clickevent_send(){
+          $('#tab').load(document.URL +  ' #tab');
             $.ajax({
-                url:"/write",
+                url:"/send",
                 context: document.body});}
     </script>
 

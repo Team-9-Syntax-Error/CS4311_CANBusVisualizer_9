@@ -1,13 +1,16 @@
 from lib2to3.pgen2 import token
+from threading import Thread
 from wsgiref.util import request_uri
 from flask import Flask, redirect, url_for, render_template, request
 from datetime import date
 from data_handler import DataHandler
-import can_rw
 import json
 import os
-import time
-import can
+from threading import Thread
+from can_read import read_bus
+from can_write import write_bus
+
+
 
 app = Flask(__name__)
 
@@ -23,7 +26,11 @@ json_folder_path = path + "/json"
 #Project Page / Table information is comming
 headings = ("Timestamp", "ID", "S", "DL")
 data = []
-json_data = []
+
+
+# Classes for threads
+read_class = read_bus()
+
 
 # This is our Main Page / First Page that appears
 @app.route("/", methods=["GET", "POST"])
@@ -67,23 +74,35 @@ def edit_project():
 
 """
 
-# READS CAN BUS SCRIPT
+# Open the Thread to Read on page Open
 @app.route("/project_page", methods=["GET", "POST"])
 def project_page():
-    print('Stuck here?..')
-    while True:
-        print("I entered while")
-        packet = can_rw.receiveDBC()
-        print("Stuck here?")
-        writeToTable(packet)
-        print("Sup?")
-        writeJson(json_data)
-        return render_template("project_page.html", headings=headings, data=data)
 
-def writeJson(data, filename = json_folder_path + "01_json_data.json"):
-    with open(filename, "w", encoding = 'utf8') as f:
-        json.dump(data, f, indent=4)
-        print("JSON Created...")
+    #Creating thread to open socket for reading..
+    print("Ruinning Thread to recieve BUS")
+    thread_read  = Thread(target = read_class.receiveDBC)
+    thread_read.start()
+        
+    return render_template("project_page.html", headings=headings, data=data)
+
+
+            
+# WRITE TO CAN BUS SCRIPT
+@app.route('/send')
+def send():
+    
+    print('Sending packet...')
+    writting = write_bus()
+    writting.sendDBC()
+
+    # Read packet from the reading Thread to update Table
+    packet = None
+    while not packet:
+        packet = read_class.packet
+    writeToTable(packet)
+    
+
+    return render_template('project_page.html', headings=headings, data=data)
 
 def writeToTable(packet):
         if packet:
@@ -91,21 +110,13 @@ def writeToTable(packet):
             tokens = packet.split()
             myvar = " ".join(tokens[8:])
             data.append([tokens[1], tokens[3], tokens[5], myvar])
-            #Format for Json
-            json_data.append({
-                'Timestamp' : tokens[1],
-                'ID' : tokens[3],
-                'S' : tokens[5],
-                'DL': myvar
-            })
+            print("This is my data", data)
+            #read_class.packet = None
 
 
-# WRITE TO CAN BUS SCRIPT
-@app.route('/write')
-def write():
-    print('Writing...')
-    can_rw.sendDBC()
-    return render_template('project_page.html')
+
+
+
 
 
 # Should access Json File of packets and edit Json file 

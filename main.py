@@ -70,10 +70,13 @@ def edit_project():
 # READS CAN BUS SCRIPT
 @app.route("/project_page", methods=["GET", "POST"])
 def project_page():
-    print('Reading...')
+    print('Stuck here?..')
     while True:
-        packet = can_rw.read()
+        print("I entered while")
+        packet = can_rw.receiveDBC()
+        print("Stuck here?")
         writeToTable(packet)
+        print("Sup?")
         writeJson(json_data)
         return render_template("project_page.html", headings=headings, data=data)
 
@@ -101,7 +104,7 @@ def writeToTable(packet):
 @app.route('/write')
 def write():
     print('Writing...')
-    can_rw.write()
+    can_rw.sendDBC()
     return render_template('project_page.html')
 
 

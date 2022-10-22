@@ -1,26 +1,28 @@
-
 import can
+import cantools
+db = cantools.db.load_file('/home/kevin/Documents/Test_2/motohawk.dbc')
 
-bus = can.Bus(channel='vcan0', interface='socketcan')
+bus = can.interface.Bus(bustype='socketcan', channel='vcan0', bitrate=250000)
 
-def read():
-
-    message = bus.recv(1.0)
+def receiveDBC():
+    message = bus.recv()
     if message is None:
-        print("Reading ... ")
+        print("None ... ")
         return None
     else:
-        print("Reading: ", message)
+        print(message)
         return message
 
 
-def write():
+def sendDBC():
+    msg_data = msg.encode({'Enable':1, 'AverageRadius': 1, 'Temperature': 251})
+    msg = can.Message(arbitration_id=msg.frame_id, data=msg_data, is_extended_id=False)
+    try:
+        bus.send(msg)
+        print("Message sent on {}".format(bus.channel_info))
 
-    for i in range(10):
-        msg = can.Message(arbitration_id=0xc0ffee, data=[10, i, 0, 1, 3, 1, 4, 1], is_extended_id=False)
-        bus.send_periodic(msg, 1)
-    print("Finished Writing")
-
+    except can.CanError:
+        print("Message NOT sent")
 
 # Copy paste this into terminal to test virtual can
 """

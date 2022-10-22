@@ -1,6 +1,9 @@
 import can
 import cantools
-db = cantools.db.load_file('/home/kevin/Documents/Test_2/motohawk.dbc')
+import os
+
+cwd = os.getcwd()
+db = cantools.db.load_file(cwd + "/dbc_files/motohawk.dbc")
 
 bus = can.interface.Bus(bustype='socketcan', channel='vcan0', bitrate=250000)
 

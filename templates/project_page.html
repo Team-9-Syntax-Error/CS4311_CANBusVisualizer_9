@@ -38,7 +38,7 @@
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-              <a class ="open-button" id = "edit" onclick="myfunction_clickevent_edit()">Edit Packet</a>
+              <a id = "edit" onclick="myfunction_clickevent_edit()">Edit Packet</a>
 
               <div class="form-popup" id="myForm">
                 <form action="/project_page.html" class="form-container">
@@ -65,22 +65,10 @@
           </div> 
         </div>
 
-        <script>
-          function openForm() {
-          document.getElementById("myForm").style.display = "block";
-          }
-
-          function closeForm() {
-          document.getElementById("myForm").style.display = "none";
-          }
-        </script>
-
       <!-- CONTAINER FOR PACKET TABLE -->
        <div class="myBox" id="box">
 
-
-
-              <button id = "replay" onclick="myfunction_clickevent_replay()">Replay Packet</button>
+        <button id = "replay" onclick="myfunction_clickevent_replay()">Replay Packet</button>
 
         <table class="table" id = "tab">
           <tr class="table__header">
@@ -129,7 +117,15 @@
   function myfunction_clickevent_edit(){
       $.ajax({
           url:"/edit",
-          context: document.body});}
+          context: document.body});
+          document.getElementById("myForm").style.display = "block";  
+          }
+</script>
+
+<script>
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+  }
 </script>
 
 <script>

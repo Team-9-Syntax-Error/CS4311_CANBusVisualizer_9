@@ -38,8 +38,26 @@
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-              <a id = "edit" onclick="myfunction_clickevent_edit()">Edit Packet</a>
-              <a id = "replay" onclick="myfunction_clickevent_replay()">Replay Packet</a>
+              <a class ="open-button" id = "edit" onclick="myfunction_clickevent_edit()">Edit Packet</a>
+
+              <div class="form-popup" id="myForm">
+                <form action="/project_page.html" class="form-container">
+                  <h2>Edit Packet</h2>
+
+                  <label for="name"><b>Name:</b></label>
+                  <input type="text" placeholder="Name" name="name" required>
+
+                  <label for="id"><b>ID:</b></label>
+                  <input type="text" placeholder="ID" name="id" required>
+
+                  <label for="data"><b>Data:</b></label>
+                  <input type="text" placeholder="Data" name="data" required>
+
+                  <button type="submit" class="btn">Accept</button>
+                  <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                </form>
+              </div>
+
               <a id = "save" onclick="myfunction_clickevent_save()">Save Packet</a>
               <a id = "annotate" onclick="myfunction_clickevent_annotate()">Annotate Packet</a>
             </div>
@@ -47,8 +65,23 @@
           </div> 
         </div>
 
+        <script>
+          function openForm() {
+          document.getElementById("myForm").style.display = "block";
+          }
+
+          function closeForm() {
+          document.getElementById("myForm").style.display = "none";
+          }
+        </script>
+
       <!-- CONTAINER FOR PACKET TABLE -->
        <div class="myBox" id="box">
+
+
+
+              <button id = "replay" onclick="myfunction_clickevent_replay()">Replay Packet</button>
+
         <table class="table" id = "tab">
           <tr class="table__header">
             {% for header in headings %}
@@ -112,19 +145,19 @@
 <script>
   function myfunction_clickevent_replay(){
       $.ajax({
-          url:"/annotate",
+          url:"/replay",
           context: document.body});}
 </script>
 <script>
   function myfunction_clickevent_save(){
       $.ajax({
-          url:"/replay",
+          url:"/save",
           context: document.body});}
 </script>
 <script>
   function myfunction_clickevent_annotate(){
       $.ajax({
-          url:"/save",
+          url:"/annotate",
           context: document.body});}
 
 </script>

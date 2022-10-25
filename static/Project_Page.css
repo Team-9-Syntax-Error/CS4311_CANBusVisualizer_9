@@ -14,7 +14,7 @@ body {
     font-family: "Helvetica", Sans-Serif;
     background-image: url('img/Bg_Image1.jpg');
     display: inline-block;
-} * {box-sizing: border-box;}
+} * {box-sizing: border-box;} /* Added for the form */
 
 .button1, .button2 
 {

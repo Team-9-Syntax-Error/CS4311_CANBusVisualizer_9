@@ -38,7 +38,7 @@
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-              <a id = "edit" onclick="myfunction_clickevent_edit()">Edit Packet</a>
+              <a id = "edit" onclick="myfunction_clickevent_edit(); openForm();">Edit Packet</a>
 
               <div class="form-popup" id="myForm">
                 <form action="/project_page.html" class="form-container">
@@ -117,12 +117,15 @@
   function myfunction_clickevent_edit(){
       $.ajax({
           url:"/edit",
-          context: document.body});
-          document.getElementById("myForm").style.display = "block";  
+          context: document.body});  
           }
 </script>
 
 <script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
 function closeForm() {
   document.getElementById("myForm").style.display = "none";
   }

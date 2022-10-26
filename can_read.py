@@ -16,6 +16,7 @@ class read_bus():
         self.db_msg = self.db.get_message_by_name("ExampleMessage") # Gets message from DBC file
 
         self.json_data = []
+        self.i = 1
 
 
     def receiveDBC(self):
@@ -31,17 +32,19 @@ class read_bus():
                     self.writeJson()
     
 
-    def writeJson(self, filename = "json01_json_data.json"):
+    def writeJson(self, filename = "json_data.json"):
         with open(filename, "w", encoding = 'utf8') as f:
-            
+            self.i+=1
             self.packet = str(self.packet)
             tokens = self.packet.split()
             myvar = " ".join(tokens[8:])
             self.json_data.append({
+                f'Packet {self.i}': [{
                 'Timestamp' : tokens[1],
                 'ID' : tokens[3],
                  'S' : tokens[5],
                  'DL': myvar
+                }]
               })
             json.dump(self.json_data, f, indent=4)
             print("JSON Created...")

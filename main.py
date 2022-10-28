@@ -24,7 +24,7 @@ os.chdir(path)
 json_folder_path = path + "/json"
 
 #Project Page / Table information is comming
-headings = ("Timestamp", "ID", "S", "DL")
+headings = ("Timestamp", "ID", "S", "DL", "Channel", "Annotate")
 data = []
 
 
@@ -108,8 +108,10 @@ def writeToTable(packet):
         if packet:
             packet = str(packet)
             tokens = packet.split()
-            myvar = " ".join(tokens[8:])
-            data.append([tokens[1], tokens[3], tokens[5], myvar])
+            dl = " ".join(tokens[8:15])
+            channel = tokens[17]
+            annotate = '-'
+            data.append([tokens[1], tokens[3], tokens[5], dl, channel, annotate])
             print("This is my data", data)
             #read_class.packet = None
 

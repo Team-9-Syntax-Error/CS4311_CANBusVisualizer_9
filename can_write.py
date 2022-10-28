@@ -1,9 +1,6 @@
-
-
 import can
 import cantools
 import os
-
 
 class write_bus():
 

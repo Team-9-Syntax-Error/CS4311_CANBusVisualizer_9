@@ -2,9 +2,7 @@
    <head>
       <title>Project Page</title>
    </head>
-   <h1>Project</h1>
    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='Project_Page.css')}}">
-   
    <body>
 
       <div class="navbar">
@@ -66,10 +64,10 @@
         </div>
 
       <!-- CONTAINER FOR PACKET TABLE -->
+      <button id = "replay" onclick="myfunction_clickevent_replay()">Replay Packet</button>
+      
+
        <div class="myBox" id="box">
-
-        <button id = "replay" onclick="myfunction_clickevent_replay()">Replay Packet</button>
-
         <table class="table" id = "tab">
           <tr class="table__header">
             {% for header in headings %}
@@ -88,13 +86,20 @@
 
       <!-- CONTAINER FOR MAP -->
       <div class="myBox2" id="box2">
+        <body onload="init()">
+          <div id="myDiagramDiv" class = "myDiagram"></div>
+          </body>
       </div> 
+
+     
+
+      <div w3-include-html="graph.html"></div>
+
 
       <element onload="myfunction_onload">
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
       <button type="submit" class= "button2" onclick='myfunction_clickevent_send()'>Send</button>
       
-
       <script>
         function myfunction_onload(){
             $.ajax({
@@ -150,6 +155,58 @@ function closeForm() {
           context: document.body});}
 
 </script>
+
+
+
+<script src="https://unpkg.com/gojs/release/go-debug.js"></script>
+
+        <script>
+    
+            function init(){
+                var $ = go.GraphObject.make;
+                myDiagram = $(go.Diagram, "myDiagramDiv");
+                myDiagram.nodeTemplate =
+                new go.Node("Horizontal",
+                    // the entire node will have a light-blue background
+                    { background: "#44CCFF" })
+                    .add(new go.Picture(
+                        // Pictures should normally have an explicit width and height.
+                        // This picture has a red background, only visible when there is no source set
+                        // or when the image is partially transparent.
+                        { margin: 10, width: 50, height: 50, background: "black" })
+                        // Picture.source is data bound to the "source" attribute of the model data
+                        .bind("source"))
+                    .add(new go.TextBlock(
+                        "Default Text",  // the initial value for TextBlock.text
+                        // some room around the text, a larger font, and a white stroke:
+                        { margin: 12, stroke: "white", font: "bold 16px sans-serif" })
+                        // TextBlock.text is data bound to the "name" property of the model data
+                        .bind("text", "name"));
+                        
+                        myDiagram.linkTemplate =
+                        new go.Link(
+                            // default routing is go.Link.Normal
+                            // default corner is 0
+                            { routing: go.Link.Orthogonal, corner: 5 })
+                            // the link path, a Shape
+                            .add(new go.Shape({ strokeWidth: 3, stroke: "#555" }))
+                            // if we wanted an arrowhead we would also add another Shape with toArrow defined:
+                            //.add(new go.Shape({  toArrow: "Standard", stroke: null  }))
+                        // it's best to declare all templates before assigning the model
+                        myDiagram.model = new go.TreeModel(
+                        [   {key: "0",               name: "Bus Termination"},
+                            { key: "1", parent:"0",  name: "Airbag"},
+                            { key: "2", parent:"7",  name: "brake"},
+                            { key: "3", parent: "0", name: "engine"},
+                            { key: "4", parent: "7", name: "lights"},
+                            { key: "5", parent: "0", name: "oil"},
+                            { key: "6", parent: "7", name: "transmission"},
+                            { key: "7", parent: "0", name: "Bus Termination"}
+                        ]);
+            }
+        </script>
+
+
 
 
 </body>

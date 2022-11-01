@@ -86,7 +86,6 @@ def project_page():
     return render_template("project_page.html", headings=headings, data=data)
 
 
-            
 # WRITE TO CAN BUS SCRIPT
 @app.route('/send')
 def send():

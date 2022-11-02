@@ -15,6 +15,7 @@ class read_bus():
         self.db_msg = self.db.get_message_by_name("ExampleMessage") # Gets message from DBC file
 
         self.json_data = []
+        self.decoded_json_data = []
 
 
     def receiveDBC(self):
@@ -24,11 +25,25 @@ class read_bus():
             print("Boooooom: ", message)
             print(" Reading:", self.bus.channel_info, " ...")
             if message:
+                self.decoded = self.db.decode_message(message.arbitration_id, message.data)
                 print("Decoded Message:", self.db.decode_message(message.arbitration_id, message.data))
                 self.packet =  message
 
                 if self.packet:                
                     self.writeJson()
+                    self.writeDecodedJson()
+
+    def writeDecodedJson(self, filename = "decoded_data_json.json"):
+        with open(filename, "w", encoding = 'utf8') as f:
+            self.decoded = str(self.decoded)
+            tokens = self.decoded.split()
+            self.decoded_json_data.append({
+                "Enable": tokens[1],
+                "AverageRadius": tokens[3],
+                "Temperature": tokens[5],
+              })
+            json.dump(self.decoded_json_data, f, indent=4)
+            print("Decoded Json Created...")
 
 
     def writeJson(self, filename = "json_data.json"):

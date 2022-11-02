@@ -10,8 +10,6 @@ from threading import Thread
 from can_read import read_bus
 from can_write import write_bus
 
-
-
 app = Flask(__name__)
 
 today = date.today()

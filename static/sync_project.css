@@ -1,0 +1,30 @@
+header {
+    width: 964px;
+    height: 90px;
+}
+
+.utep_logo {
+    float: right;
+    max-width: 7%;
+    max-height: 7%;
+}
+
+.devcom_logo {
+    float: left;
+    max-width: 7%;
+    max-height: 7%;
+}
+
+body {
+    font-size: 20px;
+    display: block;
+    color: white;
+    font-family: "Helvetica", Sans-Serif;
+    background-image: url('img/Bg_Image1.jpg');
+    display: inline-block;
+}
+
+div button {
+    display: inline-block;
+    width: 100px;
+}

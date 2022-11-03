@@ -33,7 +33,6 @@ read_class = read_bus()
 # This is our Main Page / First Page that appears
 @app.route("/", methods=["GET", "POST"])
 def main_page():
-    print("We are here123")
     if request.method == "POST":
         print("We are here")
         if "upload_folder" in request.form and request.form['upload_folder'] == "go":
@@ -52,6 +51,17 @@ def upload_file():
             print(files)
         return redirect(request.url)
     return render_template("upload_file.html")
+
+# Created for 11/2/2022 Demo, just skeleton for sync functionality
+app.config["UPLOAD_FILES"] = "/GitHub/CS4311_CANBusVisualizer_9/static/img/uploads/"
+@app.route("/sync_project", methods=["GET", "POST"])
+def sync_project():
+    if request.method == "POST":
+        if request.files:
+            files = request.files['Sync'] # Access with the tag name 'Upload' that was setup in html
+            print(files)
+        return redirect(request.url)
+    return render_template("sync_project.html")
 
 
 # Create Project Page I made these comments for mysef so I dont get confused.- Victor Herrera

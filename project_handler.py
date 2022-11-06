@@ -16,8 +16,8 @@ class ProjectHandler:
     def save_project(self):
         root = tk.Tk()
         root.withdraw()
-
         file_path = filedialog.askdirectory()
+        root.destroy()
         print(file_path)
 
     def get(self, data_type, key):

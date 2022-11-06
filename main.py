@@ -3,7 +3,7 @@ from threading import Thread
 from wsgiref.util import request_uri
 from flask import Flask, redirect, url_for, render_template, request
 from datetime import date
-from project_handler import ProjectHandler
+from project_handler import FileHandler
 import json
 import os
 from threading import Thread
@@ -72,8 +72,8 @@ def sync_project():
 @app.route("/create_project", methods=["POST", "GET"])
 def create_project():
     if request.method == "POST":
-        ph = ProjectHandler(request.form)
-        ph.save_project()
+        FileHandler.save_project(request.form)
+        FileHandler.retrieve_project()
         # Replace with project_page when ready
         return redirect(url_for("create_project"))
     else:

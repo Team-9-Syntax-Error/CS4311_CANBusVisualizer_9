@@ -1,27 +1,69 @@
-import os
 import json
 import tkinter as tk
 from tkinter import filedialog
 
 
-class ProjectHandler:
-    json_object = ""
-    json_dict = []
+class FileHandler:
+    """
+    Handle saving and retrieving of JSON objects/files
+    """
 
-    def __init__(self, project_info):
-        self.json_object = json.dumps(project_info, indent=2)
-        self.json_dict = project_info
+    @staticmethod
+    def save_project(project_info):
+        """
+        Saves project dictionary into user-defined directory as a .JSON file.
 
-    def save_project(self):
-        json_file = open(ProjectHandler.prompt_dir()+"/"+self.json_dict['project_name']+".json", "w")
-        json_file.write(self.json_object)
+        Parameters:
+                project_info (dict()): Project dictionary
+        """
+
+        # Dump dictionary into json object
+        json_object = json.dumps(project_info, indent=2)
+        # Prompt user for directory and create blank json file
+        json_file = open(FileHandler.prompt_dir() + "/" + project_info['project_name'] + ".json", "w")
+        # Write json contents to file
+        json_file.write(json_object)
+
+    @staticmethod
+    def retrieve_project():
+        """
+        Retrieves JSON contents from user-selected file
+
+        Returns:
+                Project dictionary
+        """
+        # Prompt user file and load into dictionary
+        return json.load(FileHandler.prompt_file())
+
 
     @staticmethod
     def prompt_dir():
+        """
+        Prompt user for directory using Tkinter GUI
+
+        Returns:
+                Directory string
+        """
+
+        # Create root
         root = tk.Tk()
-        root.withdraw()
+        # Prompt directory
         file_path = filedialog.askdirectory()
+        # Kill window
         root.destroy()
         return file_path
 
+    @staticmethod
+    def prompt_file():
+        """
+        Prompt user for file using Tkinter GUI
 
+        Returns:
+                File object
+        """
+
+        root = tk.Tk()
+        # Prompt user file
+        file = filedialog.askopenfile()
+        root.destroy()
+        return file

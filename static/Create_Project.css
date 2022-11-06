@@ -17,10 +17,10 @@ body {
 form{
     position:relative;
     margin:auto;
-    width:765px;
+    width:735px;
     background-color:#EAEDED;
     border-radius:20px;
-    top:70px;
+    top:50px;
     padding:25px;
     padding-bottom:50px
 }
@@ -34,7 +34,7 @@ form{
 table, .create_proj{
     font-family:arial;
     font-weight:bold;
-    font-size:250%;
+    font-size:225%;
     color:#5A5A5A
 }
 
@@ -43,7 +43,7 @@ td{
 }
 
 .label_col{
-    width:400px
+    width:475px
 }
 
 input {

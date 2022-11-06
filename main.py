@@ -26,7 +26,7 @@ data = []
 
 
 # Classes for threads
-# read_class = read_bus()
+read_class = read_bus()
 
 
 # This is our Main Page / First Page that appears
@@ -74,6 +74,7 @@ def create_project():
     if request.method == "POST":
         ph = ProjectHandler(request.form)
         ph.save_project()
+        # Replace with project_page when ready
         return redirect(url_for("create_project"))
     else:
         return render_template("Create_Project.html", date=today)

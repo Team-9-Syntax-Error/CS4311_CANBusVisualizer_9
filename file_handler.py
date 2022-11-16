@@ -2,6 +2,9 @@ import json
 import os
 from tkinter import filedialog
 from tkinter import messagebox
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication, QMainWindow
+import sys
 
 
 class FileHandler:
@@ -31,6 +34,7 @@ class FileHandler:
                 path = FileHandler.prompt_dir()
                 # Create project directory and update path with new directory
                 path = FileHandler.create_dir(file_name, path)
+                print(path)
                 # Create config file
                 FileHandler.create_file("config", ".json", path, json_object)
                 return 1
@@ -92,8 +96,15 @@ class FileHandler:
                 Directory string
         """
 
-        # Prompt directory
-        file_path = filedialog.askdirectory()
+        # Create PyQt application
+        app = QApplication(sys.argv)
+        # Create the main window
+        win = QMainWindow()
+        # Prompt for directory
+        file_path = QtWidgets.QFileDialog.getExistingDirectory(win, 'Select Folder')
+        # Exit application
+        app.quit()
+
         return file_path
 
     @staticmethod

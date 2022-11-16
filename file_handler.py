@@ -34,6 +34,10 @@ class FileHandler:
                 # Create config file
                 FileHandler.create_file("config", ".json", path, json_object)
                 return 1
+            # Tkinter 'cancel' has returned an error tuple to path, resulting in a type error
+            except TypeError:
+                break
+            # The user has tried to create an already existing directory
             except FileExistsError:
                 messagebox.showerror(title="CAN Bus Visualizer", message="Folder Already Exists!")
         return 0

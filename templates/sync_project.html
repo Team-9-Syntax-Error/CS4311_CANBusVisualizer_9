@@ -1,3 +1,7 @@
+
+
+
+
 <html>
     <head>
         <title>Sync Project</title>
@@ -15,15 +19,14 @@
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='sync_project.css')}}">
     <form action = "/sync_project" method = "POST" enctype="multipart/form-data">
         
-        <div class="form-group">
-        <label>Select Project</label>
-        <div class="custom-file">
-            <input type="file" class="custom-class-input" name="Sync" id="file" multiple>
-            <label class="custom-class-label" for="file" >Select Documents</label>
-        </div>
-        </div>
 
-        <button type="submit "class="btn btn-primary">Sync Project</button>
+    <label for="folder">Select folder</label>
+        <from method="Post">
+            <input type="file" name = "from_folderpath" id="folder" webkitdirectory multiple/>
+            <input type="file" name = "to_folderpath" id="folder" webkitdirectory multiple/>
+            <button type="submit "class="btn btn-primary">Sync Project</button>
+        </form>
+        <h2>Selected Files</h2>
 
     </form>
     <body>

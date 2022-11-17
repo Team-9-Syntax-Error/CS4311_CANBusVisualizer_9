@@ -9,3 +9,8 @@ class R_sync:
     def sync(self):
         #copying everything in the provided folder path
         subprocess.run(f"(rsync {self.from_folderpath} {self.to_folderpath})", shell=True)
+
+
+
+
+

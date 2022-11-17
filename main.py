@@ -9,6 +9,8 @@ import os
 from threading import Thread
 from can_read import read_bus
 from can_write import write_bus
+from rsync import R_sync
+
 
 app = Flask(__name__)
 
@@ -137,7 +139,6 @@ def writeToTable(packet):
 def edit():
     return render_template('project_page.html')
 
-
 #
 @app.route('/annotate')
 def annotate():
@@ -154,6 +155,20 @@ def replay():
 @app.route('/save')
 def save():
     return render_template('project_page.html')
+
+@app.route('/project_sync', methods=['GET','POST'])
+def r_sync():
+
+    if request.method == "POST":
+        rsync = R_sync()
+        from_folderpath = request.form['from_folderpath']
+        to_folderpath = request.form['to_folderpath']
+
+        print(from_folderpath, to_folderpath)
+        rsync.sync(from_folderpath, to_folderpath)
+
+    return render_template('sync_project.html')
+
 
 
 if __name__ == "__main__":

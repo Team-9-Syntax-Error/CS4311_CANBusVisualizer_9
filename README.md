@@ -10,4 +10,5 @@ ip -details -statistics link show vcan0
 ```bash
 pip install pyqt5
 pip install pyqt5-tools
+pip install tk
 ```

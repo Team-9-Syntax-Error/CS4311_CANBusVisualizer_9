@@ -76,8 +76,8 @@ def create_project():
     if request.method == "POST":
         FileHandler.save_project(request.form)
         # FileHandler.load_project()
-        # Replace with project_page when ready
-        return redirect(url_for("create_project"))
+        #
+        return redirect(url_for("project_page"))
     else:
         return render_template("Create_Project.html", date=today)
 

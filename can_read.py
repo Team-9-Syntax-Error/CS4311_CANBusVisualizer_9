@@ -33,6 +33,9 @@ class read_bus():
                     self.writeJson()
                     self.writeDecodedJson()
 
+
+    #The code below handles writing to JSON --> Decoded information and raw information
+
     def writeDecodedJson(self, filename = "decoded_data_json.json"):
         with open(filename, "w", encoding = 'utf8') as f:
             self.decoded = str(self.decoded)
@@ -54,12 +57,12 @@ class read_bus():
             channel = tokens[17]
             annotate = '-'
             self.json_data.append({
-                    "Timestamp": tokens[1],
-                     "ID": tokens[3],
-                     "S": tokens[5],
-                     "DL": dl,
-                     "Channel": channel,
-                      "Annotate": annotate
+                    "timestamp": tokens[1],
+                     "id": tokens[3],
+                     "s": tokens[5],
+                     "dl": dl,
+                     "channel": channel,
+                      "annotate": annotate
               })
             json.dump(self.json_data, f, indent=4)
             print("JSON Created...")

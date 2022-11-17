@@ -1,0 +1,9 @@
+[   {"Key": "0",               "name": "Bus Termination"},
+                        { "Key": "1", "parent":"0",  "name": "Airbag"},
+                        { "Key": "2", "parent":"7",  "name": "brake"},
+                        { "Key": "3", "parent": "0", "name": "engine"},
+                        { "Key": "4", "parent": "7", "name": "lights"},
+                        { "Key": "5", "parent": "0", "name": "oil"},
+                        { "Key": "6", "parent": "7", "name": "transmission"},
+                        { "Key": "7", "parent": "0", "name": "Bus Termination"}
+                    ]

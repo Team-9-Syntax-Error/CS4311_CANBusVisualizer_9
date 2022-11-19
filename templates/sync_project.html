@@ -17,18 +17,18 @@
         </h1>
     </head>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='sync_project.css')}}">
+
     <form action = "/sync_project" method = "POST" enctype="multipart/form-data">
-        
-
-    <label for="folder">Select folder</label>
-        <from method="Post">
-            <input type="file" name = "from_folderpath" id="folder" webkitdirectory multiple/>
-            <input type="file" name = "to_folderpath" id="folder" webkitdirectory multiple/>
-            <button type="submit "class="btn btn-primary">Sync Project</button>
-        </form>
-        <h2>Selected Files</h2>
-
+        <br><br>    
+        <label for="fname">Source Path:</label>
+        <input type="text" id="fname" name="sourcePath"><br><br>
+        <label for="lname">Destination Path:</label>
+        <input type="text" id="lname" name="destinationPath"><br><br>
+            <button type="submit "class="btn btn-primary">R-Sync Project</button>
+        <h2>{{Success}}</h2>
     </form>
+
+    
     <body>
     </body>
 </html>

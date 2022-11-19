@@ -62,12 +62,26 @@ app.config["UPLOAD_FILES"] = "/GitHub/CS4311_CANBusVisualizer_9/static/img/uploa
 
 @app.route("/sync_project", methods=["GET", "POST"])
 def sync_project():
+
+    value = False
     if request.method == "POST":
-        if request.files:
-            files = request.files['Sync']  # Access with the tag name 'Upload' that was setup in html
-            print(files)
-        return redirect(request.url)
-    return render_template("sync_project.html")
+        source=request.form['sourcePath']
+        destination = request.form['destinationPath']
+
+        print("Source:", source)
+        print("Desitnation:", destination)
+        
+        if source !="" and destination !="": 
+            rsync = R_sync(source, destination)
+            rsync.sync()
+            value = rsync.compare()
+        
+            if value == False:
+                return render_template('sync_project.html', Success="Sync Process Failed")
+            else:
+                return render_template('sync_project.html', Success="Sync Process Passed")
+
+    return render_template('sync_project.html', Success="")
 
 
 # Create Project Page I made these comments for mysef so I dont get confused.- Victor Herrera

@@ -1,9 +1,7 @@
 import json
 import os
-from tkinter import filedialog
 from tkinter import messagebox
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QFileDialog
 import sys
 
 
@@ -38,7 +36,7 @@ class FileHandler:
                 # Create config file
                 FileHandler.create_file("config", ".json", path, json_object)
                 return 1
-            # Tkinter 'cancel' has returned an error tuple to path, resulting in a type error
+            # PyQt5 'cancel' has returned an error tuple to path, resulting in a type error
             except TypeError:
                 break
             # The user has tried to create an already existing directory
@@ -90,30 +88,22 @@ class FileHandler:
     @staticmethod
     def prompt_dir():
         """
-        Prompt user for directory using Tkinter GUI
+        Prompt user for directory using PyQt5 GUI
 
         Returns:
                 Directory string
         """
-
-        # Create PyQt application
+        # Create PyQt5 Application
         app = QApplication(sys.argv)
-        # Create the main window
-        win = QMainWindow()
-        # Prompt for directory
-        file_path = QtWidgets.QFileDialog.getExistingDirectory(win, 'Select Folder')
-        # Exit application
-        app.quit()
-
-        return file_path
+        return QFileDialog.getExistingDirectory()
 
     @staticmethod
     def prompt_file():
         """
-        Prompt user for file using Tkinter GUI
+        Prompt user for file using PyQt5 GUI
 
         Returns:
-                File object
+                File path
         """
-        file = filedialog.askopenfile()
-        return file
+        app = QApplication(sys.argv)
+        return QFileDialog.getOpenFileName()[0]

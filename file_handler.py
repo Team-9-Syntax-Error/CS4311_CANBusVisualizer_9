@@ -1,8 +1,9 @@
 import json
-import os
-from tkinter import messagebox
-from PyQt5.QtWidgets import QApplication, QFileDialog
 import sys
+import csv
+import os
+from PyQt5.QtWidgets import QApplication, QFileDialog
+from tkinter import messagebox
 
 
 class FileHandler:
@@ -13,47 +14,72 @@ class FileHandler:
     @staticmethod
     def save_project(project_info):
         """
-        Saves project dictionary into user-defined directory as a .JSON file.
+        Saves project python dictionary into user-defined directory as a .JSON file.
 
         Parameters:
                 project_info (dict()): Project dictionary
 
         Returns:
-                1 if successful, else 0.
+                0 if successful, else -1.
         """
+        # Get first key/value pair in the dictionary
+        project_name = list(project_info.items())[0][1]
 
-        # Dump dictionary into json object
-        json_object = json.dumps(project_info, indent=2)
-        # Get first key/value in the dictionary
-        file_name = list(project_info.items())[0][1]
+        # Loop directory prompt until success or cancel
         while True:
             try:
                 # Prompt user for path
                 path = FileHandler.prompt_dir()
+                # User cancel or close, exit function
+                if not path:
+                    break
                 # Create project directory and update path with new directory
-                path = FileHandler.create_dir(file_name, path)
-                print(path)
-                # Create config file
-                FileHandler.create_file("config", ".json", path, json_object)
-                return 1
-            # PyQt5 'cancel' has returned an error tuple to path, resulting in a type error
-            except TypeError:
-                break
+                path = FileHandler.create_dir(project_name, path)
+                # Create config.json file
+                FileHandler.create_file(path, ".json", project_info, "CONFIG")
+                return 0
             # The user has tried to create an already existing directory
             except FileExistsError:
                 messagebox.showerror(title="CAN Bus Visualizer", message="Folder Already Exists!")
-        return 0
+        return -1
 
     @staticmethod
-    def load_file():
+    def export_to_csv(py_dict):
         """
-        Loads JSON contents from user-selected file
+        Exports python dictionary into user-defined directory as a .CSV file.
+
+        Parameters:
+                py_dict (dict()): Python dictionary data
 
         Returns:
-                Project dictionary
+                0 if successful, else -1.
         """
-        # Prompt user file and load into dictionary
-        return json.load(FileHandler.prompt_file())
+        # Get file information
+        file_info = FileHandler.prompt_file_save()
+        # If file saved
+        if file_info:
+            # Create CSV file
+            FileHandler.create_file(file_info[0], file_info[2], py_dict, file_name=file_info[1])
+            return 0
+        return -1
+
+    @staticmethod
+    def create_file(path, file_type, file_contents, file_name="place_holder"):
+        """
+        File creator
+
+        Parameters:
+                path String: path
+                file_type String: file extension, Ex. (.json)
+                file_contents dict: data to be exported
+                file_name String: optional file name
+        """
+        # Create .json file
+        if file_type == ".json":
+            FileHandler.create_json_file(path, file_name, file_contents)
+        # Create .csv file
+        if file_type == ".csv":
+            FileHandler.create_csv_file(path, file_name, file_contents)
 
     @staticmethod
     def create_dir(dir_name, path):
@@ -69,41 +95,61 @@ class FileHandler:
         return path
 
     @staticmethod
-    def create_file(file_name, file_type, path, contents):
-        """
-        Provide simple API for creating a file.
+    def create_json_file(path, file_name, py_dict):
+        with FileHandler.file_opener(path, file_name, ".json") as json_file:
+            json_object = json.dumps(py_dict, indent=2)
+            json_file.write(json_object)
+            json_file.close()
 
-        Parameters:
-                file_name str: Name of the file
-                file_type str: File extension
-                path str: Directory path
-                contents str: Contents to write
-        """
-        # Open file in writing mode
-        json_file = open(path + "/" + file_name + file_type, "w")
-        # Write and close file
-        json_file.write(contents)
-        json_file.close()
+    @staticmethod
+    def create_csv_file(path, file_name, py_dict):
+        with FileHandler.file_opener(path, file_name, ".csv") as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=FileHandler.create_field_names(py_dict))
+            writer.writeheader()
+            writer.writerow(py_dict)
+
+    @staticmethod
+    def prompt_file_open():
+        app = QApplication(sys.argv)
+        path = QFileDialog.getOpenFileName()[0]
+        return FileHandler.parse_file_info(path)
+
+    @staticmethod
+    def prompt_file_save():
+        app = QApplication(sys.argv)
+        path = QFileDialog.getSaveFileName(filter="CSV files (*.csv);; XML files (*.xml)")[0]
+        return FileHandler.parse_file_info(path)
 
     @staticmethod
     def prompt_dir():
-        """
-        Prompt user for directory using PyQt5 GUI
-
-        Returns:
-                Directory string
-        """
-        # Create PyQt5 Application
         app = QApplication(sys.argv)
         return QFileDialog.getExistingDirectory()
 
     @staticmethod
-    def prompt_file():
-        """
-        Prompt user for file using PyQt5 GUI
+    def file_opener(path, file_name, file_type, flag="w"):
+        return open(path + "/" + file_name + file_type, flag)
 
-        Returns:
-                File path
-        """
-        app = QApplication(sys.argv)
-        return QFileDialog.getOpenFileName()[0]
+    @staticmethod
+    def parse_file_info(path):
+        if not path:
+            return []
+        file_name_split = FileHandler.get_path_last(path, "/").split(".")
+        path = FileHandler.remove_path_last(path, 1)
+        file_name = file_name_split[0]
+        file_type = "." + file_name_split[1]
+        return [path, file_name, file_type]
+
+    @staticmethod
+    def get_path_last(path, delimiter="/"):
+        return path.split(delimiter)[-1]
+
+    @staticmethod
+    def remove_path_last(path, remove_count):
+        return "/".join(path.split("/")[:-remove_count])
+
+    @staticmethod
+    def create_field_names(py_dict):
+        key_list = []
+        for key in py_dict:
+            key_list.append(key)
+        return key_list

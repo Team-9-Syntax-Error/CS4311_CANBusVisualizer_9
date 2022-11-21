@@ -10,7 +10,6 @@ from threading import Thread
 from can_read import read_bus
 from can_write import write_bus
 from rsync import R_sync
-from exporter import Exporter
 
 
 app = Flask(__name__)
@@ -29,7 +28,7 @@ data = []
 
 
 # Classes for threads
-# read_class = read_bus()
+read_class = read_bus()
 
 
 # This is our Main Page / First Page that appears

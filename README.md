@@ -19,4 +19,10 @@ sudo ip link set vcan0 up;
 ip -details -statistics link show vcan0
 ```
 
+## Misc
+Some of these installations are arbritrary depending on Kali Version
+
+```base
+pip install markupsafe==2.0.1
+```
 

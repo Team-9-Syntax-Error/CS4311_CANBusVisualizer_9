@@ -83,9 +83,14 @@ def sync_project():
 
     return render_template('sync_project.html', Success="")
 
+@app.route("/get_form", methods=["POST", "GET"])
+def get_form():
+    if FileHandler.save_project(request.form) == 0:
+        return "fwafw"
+    return '', 400
 
 # Create Project Page I made these comments for mysef so I dont get confused.- Victor Herrera
-@app.route("/create_project", methods=["POST", "GET"])
+@app.route('/create_project')
 def create_project():
 
     has_error = ""
@@ -108,7 +113,6 @@ def create_project():
             return render_template("Create_Project.html", date=today, error=has_error)
     else:
         return render_template("Create_Project.html", date=today, error=has_error)
-
 
 # Edit Configuration page
 # When working on the project this will allow the user to modify the configuration

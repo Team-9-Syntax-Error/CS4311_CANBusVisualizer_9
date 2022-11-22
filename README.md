@@ -21,8 +21,9 @@ ip -details -statistics link show vcan0
 
 ## Misc
 Some of these installations are arbritrary depending on Kali Version
-
+& PyQt5 specific installation fo reference
 ```base
+pip install PyQt5==5.15.4
 pip install markupsafe==2.0.1
 ```
 

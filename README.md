@@ -2,6 +2,7 @@
 
 ## Installing Dependencies
 ```bash
+pip install flask
 sudo apt-get install can-utils
 sudo apt-get install python3-tk
 pip install pyqt5

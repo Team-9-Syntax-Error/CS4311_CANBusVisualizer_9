@@ -103,21 +103,17 @@
 
 <script>
 //Hardcode data
-	var myArray = [
-	    {"timestamp": "1668656928.407125", "id": "01f0","s": "Tx","dl": "94 0c 80 00 00 00 00","channel": "vcan0","annotate": "Front lights"},
-      {"timestamp": "1668656928.443125", "id": "01f0","s": "Tx","dl": "94 0c 80 00 00 00 00","channel": "vcan0","annotate": "Oil"},
-      {"timestamp": "1668656928.403425", "id": "01f0","s": "Tx","dl": "94 0c 80 00 00 00 00","channel": "vcan0","annotate": "Door"},
-      {"timestamp": "1668656928.4025725", "id": "01f0","s": "Tx","dl": "94 0c 80 00 00 00 00","channel": "vcan0","annotate": "Alarm"},
-      {"timestamp": "1668656928.4072345", "id": "01f0","s": "Tx","dl": "94 0c 80 00 00 00 00","channel": "vcan0","annotate": "Back lights"},
-      {"timestamp": "1668656928.405435", "id": "01f0","s": "Tx","dl": "94 0c 80 00 00 00 00","channel": "vcan0","annotate": "Front lights"},
-      {"timestamp": "16452643.443125", "id": "01f0","s": "Tx","dl": "94 0c 80 00 00 00 00","channel": "vcan0","annotate": "Transmision"},
-      {"timestamp": "658656928.403425", "id": "01f0","s": "Tx","dl": "94 0c 80 00 00 00 00","channel": "vcan0","annotate": "Door"},
-      {"timestamp": "78578656928.4025725", "id": "01f0","s": "Tx","dl": "94 0c 80 00 00 00 00","channel": "vcan0","annotate": "Alarm"},
-      {"timestamp": "5787856928.4072345", "id": "01f0","s": "Tx","dl": "94 0c 80 00 00 00 00","channel": "vcan0","annotate": "-"},
-      {"timestamp": "1668656928.4072345", "id": "01f0","s": "Tx","dl": "94 0c 80 00 00 00 00","channel": "vcan0","annotate": "Back lights"},
-      {"timestamp": "1668656928.405435", "id": "01f0","s": "Tx","dl": "94 0c 80 00 00 00 00","channel": "vcan0","annotate": "Front lights"},
-      {"timestamp": "16452643.443125", "id": "01f0","s": "Tx","dl": "94 0c 80 00 00 00 00","channel": "vcan0","annotate": "Transmision"}
-	]
+	var myArray = []
+
+$.ajax({
+  type: "GET",
+  url: "http://localhost:3000/project",
+  success:function(response){
+    //myArray = response.data
+    buildTable(response)
+    console.log(response)
+  }
+})
 
 	$('th').on('click', function(){
 		var column = $(this).data('column')

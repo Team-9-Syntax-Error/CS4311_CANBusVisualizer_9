@@ -14,7 +14,7 @@ class read_bus():
         self.bus = can.interface.Bus(bustype='socketcan', channel='vcan0', bitrate = 250000)
         self.db_msg = self.db.get_message_by_name("ExampleMessage") # Gets message from DBC file
 
-        self.json_data = []
+        self.json_data = {"project" : []}
         self.decoded_json_data = []
 
 
@@ -56,7 +56,7 @@ class read_bus():
             dl = " ".join(tokens[8:15])
             channel = tokens[17]
             annotate = '-'
-            self.json_data.append({
+            self.json_data["project"].append({
                     "timestamp": tokens[1],
                      "id": tokens[3],
                      "s": tokens[5],

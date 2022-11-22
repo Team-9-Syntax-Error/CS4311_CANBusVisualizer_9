@@ -14,8 +14,9 @@
 <link type="text/css" rel="stylesheet" href="static/Create_Project.css">
 <body>
    <form method="POST" action="/create_project">
+      <h3 id= "error_handler" style="color: red">{{error}}</h3>
       <div class="create_proj">Create Project</div>
-      <table class="cp_table" border="0px solid black">
+      <table class="cp_table" style = "border: 0px solid black">
          <tr>
             <td class="label_col"><label for="project_name">Project Name:</label></td>
             <td class="input_col"><input type="text" id="project_name" name="project_name"></td>
@@ -34,7 +35,7 @@
          </tr>
          <tr>
             <td class="label_col"><label for="event_date">Event Date:</label></td>
-            <td class="input_col"><input type="text" id="event_date" name="event_date"></td>
+            <td class="input_col"> <input type="text" id="event_date" name="event_date" value="{{date}}"></td>
          </tr>
          <tr>
             <td class="label_col"><label for="can_connector_id">CAN Connector ID:</label></td>

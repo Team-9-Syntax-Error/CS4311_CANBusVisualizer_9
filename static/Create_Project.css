@@ -90,3 +90,7 @@ input {
 .back_btn:focus {outline: none;
     box-shadow: 0 0 0 2px black;
  }
+
+ .error_handler{
+    color: red
+ }

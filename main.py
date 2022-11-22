@@ -1,6 +1,5 @@
 from lib2to3.pgen2 import token
 from threading import Thread
-from wsgiref.util import request_uri
 from flask import Flask, redirect, url_for, render_template, request
 from datetime import date
 from file_handler import FileHandler
@@ -10,6 +9,7 @@ from threading import Thread
 from can_read import read_bus
 from can_write import write_bus
 from rsync import R_sync
+import re
 
 
 app = Flask(__name__)
@@ -87,12 +87,27 @@ def sync_project():
 # Create Project Page I made these comments for mysef so I dont get confused.- Victor Herrera
 @app.route("/create_project", methods=["POST", "GET"])
 def create_project():
+
+    has_error = ""
     if request.method == "POST":
-        FileHandler.save_project(request.form)
-        # FileHandler.load_project()
-        return redirect(url_for("project_page"))
+
+        # IF any text boxes are empty we let the user know and start again
+        for items,key in request.form.items():
+            string_key = str(key)
+            result = re.search("[A-Za-z0-9]*$",string_key).string
+            if not result:
+                has_error = "ERROR: Please Fill Out All Fields!"
+                return render_template("Create_Project.html", date=today, error=has_error)
+
+        
+        # IF the file hanlder successfully saved the page we can finally go into the project
+        if FileHandler.save_project(request.form) == 0:
+            return redirect(url_for("project_page"))
+        else:
+            has_error = "Error: Couldnt Save Project"
+            return render_template("Create_Project.html", date=today, error=has_error)
     else:
-        return render_template("Create_Project.html", date=today)
+        return render_template("Create_Project.html", date=today, error=has_error)
 
 
 # Edit Configuration page

@@ -1,0 +1,12 @@
+{
+  "project_name": "Joseph",
+  "project_initials": "P1",
+  "analyst_initials": "JB",
+  "event_name": "EN",
+  "event_date": "11/21/2022",
+  "can_connector_id": "ID",
+  "vehicle_id": "12345",
+  "baud_rate": "123455",
+  "dbc_file_name": "myfile",
+  "bl_file_name": "testtest"
+}

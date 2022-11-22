@@ -2,6 +2,8 @@
 
 ## Installing Dependencies
 ```bash
+pip install python-can
+pip install cantools
 pip install flask
 sudo apt-get install can-utils
 sudo apt-get install python3-tk

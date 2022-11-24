@@ -13,7 +13,7 @@ pip install pyqt5-tools
 ## Install JSON-Server
 ```bash
 sudo apt install npm
-npm install -g json-server
+sudo npm install -g json-server
 npx json-server --watch json_data.json --port 3000 //Start server JSON 
 ```
 ## Activating Can Utilties

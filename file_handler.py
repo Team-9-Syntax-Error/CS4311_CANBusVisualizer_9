@@ -49,7 +49,7 @@ class FileHandler:
                 # Create packet_data.json for user folder
                 with open(path+"/packet_data.json", "w") as jsonFile:
                     json_string = {
-                                    "project": [
+                                    "packets": [
                                         {
                                             "timestamp": "-",
                                             "id": "-",

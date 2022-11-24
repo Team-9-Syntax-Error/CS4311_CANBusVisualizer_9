@@ -37,36 +37,57 @@ class FileHandler:
                 path = FileHandler.create_dir(project_name, path)
                 # Create config.json file
                 FileHandler.create_file(path, ".json", project_info, "CONFIG")
-                print("THIS IS  THE PAHT", path)
                 # Update CURRENT_WORKING_PROJECT.JSON
-                with open("Current_Working_Project.json", "r") as jsonFile:
-                    data = json.load(jsonFile)
-                    data["Project_path"] = path
-    
-                with open("Current_Working_Project.json", "w") as jsonFile:
-                    json.dump(data, jsonFile)
+                FileHandler.update_current_project(path)
+                # Creating packet_data.json with preset Json dictionary 
+                FileHandler.make_preset_json(path)
                 
-                # Create packet_data.json for user folder
-                with open(path+"/packet_data.json", "w") as jsonFile:
-                    json_string = {
-                                    "packets": [
-                                        {
-                                            "timestamp": "-",
-                                            "id": "-",
-                                            "s": "-",
-                                            "dl": "-",
-                                            "channel": "-",
-                                            "annotate": "-"
-                                        }
-                                    ]
-                                }
-                    json.dump(json_string, jsonFile)
-
                 return 0
             # The user has tried to create an already existing directory
             except FileExistsError:
                 messagebox.showerror(title="CAN Bus Visualizer", message="Folder Already Exists!")
         return -1
+
+    @staticmethod
+    def update_current_project(path):
+
+        """
+        Updates the Current_Working_Project.json with the new provided user path
+
+        Parameters:
+                path: the new folder path of the user
+        """
+
+        with open("Current_Working_Project.json", "r") as jsonFile:
+                    data = json.load(jsonFile)
+                    data["Project_path"] = path
+    
+        with open("Current_Working_Project.json", "w") as jsonFile:
+            json.dump(data, jsonFile)
+
+    @staticmethod
+    def make_preset_json(path):
+        """
+        Makes premade and writes Json Dictionary for the file packet_data.json in the users directory
+
+        Parameters:
+                path: the folder path of the user
+        """
+        # Create packet_data.json for user folder
+        with open(path+"/packet_data.json", "w") as jsonFile:
+            json_string = {
+                            "packets": [
+                                {
+                                    "timestamp": "-",
+                                    "id": "-",
+                                    "s": "-",
+                                    "dl": "-",
+                                    "channel": "-",
+                                    "annotate": "-"
+                                }
+                            ]
+                        }
+            json.dump(json_string, jsonFile)
 
     @staticmethod
     def export_to_csv(py_dict):

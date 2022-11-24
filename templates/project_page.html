@@ -12,7 +12,7 @@
 
          <!-- DROPDOWN FOR FILE -->
          <div class="dropdown">
-           <button class="dropbtn">File 
+           <button class="dropbtn">File_Test* 
              <i class="fa fa-caret-down"></i>
            </button>
            <div class="dropdown-content">
@@ -114,7 +114,7 @@
 
 $.ajax({
   type: "GET",
-  url: "http://localhost:3000/packets",
+  url: "http://localhost:3000/project",
   success:function(response){
     myArray = response
     buildTable(myArray)
@@ -179,17 +179,39 @@ $.ajax({
 							<td>${data[i].channel}</td>
 							<td>${data[i].annotate}</td>
               <td>
-                <button class="btn btn-sm btn-danger">Delete</button>
-	              <button class="btn btn-sm btn-info">Save</button>
+                <button class="btn btn-sm btn-danger" data-paketid="${data.id}" id="delete-${data.id}">Delete</button>
+	              <button class="btn btn-sm btn-info" data-paketid="${data.id}" id="save-${data.id}">Save</button>
+
+                <button class="btn btn-sm btn-danger hidden" data-paketid="${data.id}" id="cancel-${data.id}">Cancel</button>
+	              <button class="btn btn-sm btn-info hidden" data-paketid="${data.id}" id="confirm-${data.id}">Confirm</button>
 	              
-	              <button class="btn btn-sm btn-danger hidden">Cancel</button>
-	              <button class="btn btn-sm btn-primary hidden">Confirm</button>
               </td>
 					  </tr>`
 			table.innerHTML += row
-
 		}
 	}
+
+  function editResult(){
+    var packetid = $(this).val('packetid')
+
+  }
+
+  function saveUpdate(){
+    var packetid = $(this).val('packetid')
+  }
+
+  function deleteTest(){
+    var packetid = $(this).val('packetid')
+  }
+
+  function cancelDeletion(){
+    var packetid = $(this).val('packetid')
+  }
+
+  function confirmDeletion(){
+    var packetid = $(this).val('packetid')
+  }
+
 
 </script>
 

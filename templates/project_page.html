@@ -5,6 +5,7 @@
    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='Project_Page.css')}}">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <body>
 
       <div class="navbar">
@@ -101,6 +102,12 @@
 
       </div>
 
+<style>
+	.hidden{
+        display:none;
+    }
+</style>
+
 <script>
 //Hardcode data
 	var myArray = []
@@ -171,6 +178,13 @@ $.ajax({
               <td>${data[i].tx}</td>
 							<td>${data[i].channel}</td>
 							<td>${data[i].annotate}</td>
+              <td>
+                <button class="btn btn-sm btn-danger">Delete</button>
+	              <button class="btn btn-sm btn-info">Save</button>
+	              
+	              <button class="btn btn-sm btn-danger hidden">Cancel</button>
+	              <button class="btn btn-sm btn-primary hidden">Confirm</button>
+              </td>
 					  </tr>`
 			table.innerHTML += row
 

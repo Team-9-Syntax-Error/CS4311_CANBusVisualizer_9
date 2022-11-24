@@ -109,9 +109,9 @@ $.ajax({
   type: "GET",
   url: "http://localhost:3000/project",
   success:function(response){
-    //myArray = response.data
-    buildTable(response)
-    console.log(response)
+    myArray = response
+    buildTable(myArray)
+    console.log(myArray)
   }
 })
 

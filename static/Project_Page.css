@@ -146,11 +146,11 @@ body {
 .container_table 
 {
   position: fixed;
-  top: 700px;
+  top: 620px;
   left: 7%;
   font: 24px/36px sans-serif;
   width: 1600px;
-  height: 200px;
+  height: 350px;
   overflow: scroll;
   border: 2px solid black;
   position: absolute;

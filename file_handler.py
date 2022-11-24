@@ -37,6 +37,14 @@ class FileHandler:
                 path = FileHandler.create_dir(project_name, path)
                 # Create config.json file
                 FileHandler.create_file(path, ".json", project_info, "CONFIG")
+                print("THIS IS  THE PAHT", path)
+                # Update CURRENT_WORKING_PROJECT.JSON
+                with open("Current_Working_Project.json", "r") as jsonFile:
+                    data = json.load(jsonFile)
+                    data["Project_path"] = path
+                with open("Current_Working_Project.json", "w") as jsonFile:
+                    json.dump(data, jsonFile)
+
                 return 0
             # The user has tried to create an already existing directory
             except FileExistsError:

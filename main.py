@@ -90,7 +90,7 @@ def get_form():
     return '', 400
 
 # Create Project Page I made these comments for mysef so I dont get confused.- Victor Herrera
-@app.route('/create_project')
+@app.route('/create_project', methods=["POST", "GET"])
 def create_project():
 
     has_error = ""
@@ -100,17 +100,22 @@ def create_project():
         for items,key in request.form.items():
             string_key = str(key)
             result = re.search("[A-Za-z0-9]*$",string_key).string
-            if not result:
+            if not result: # Failure Case:
                 has_error = "ERROR: Please Fill Out All Fields!"
                 return render_template("Create_Project.html", date=today, error=has_error)
 
-        
+
+        # Success Case
         # IF the file hanlder successfully saved the page we can finally go into the project
         if FileHandler.save_project(request.form) == 0:
             return redirect(url_for("project_page"))
+
+        # Failure Case:
         else:
             has_error = "Error: Couldnt Save Project"
             return render_template("Create_Project.html", date=today, error=has_error)
+
+    # First instance of the page
     else:
         return render_template("Create_Project.html", date=today, error=has_error)
 

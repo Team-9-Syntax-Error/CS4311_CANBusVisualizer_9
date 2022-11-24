@@ -14,7 +14,7 @@ class read_bus():
         self.bus = can.interface.Bus(bustype='socketcan', channel='vcan0', bitrate = 250000)
         self.db_msg = self.db.get_message_by_name("ExampleMessage") # Gets message from DBC file
 
-        self.json_data = {"project" : []}
+        self.json_data = {"packets" : []}
         self.decoded_json_data = []
 
 
@@ -49,14 +49,20 @@ class read_bus():
             print("Decoded Json Created...")
 
 
-    def writeJson(self, filename = "json_data.json"):
+    def writeJson(self, filename = "packet_data.json"):
+
+        with open("Current_Working_Project.json", "r") as jsonFile:
+                    data = json.load(jsonFile)
+                    project_path = data["Project_path"]
+
+        filename = project_path + "/"+ filename
         with open(filename, "w", encoding = 'utf8') as f:
             self.packet = str(self.packet)
             tokens = self.packet.split()
             dl = " ".join(tokens[8:15])
             channel = tokens[17]
             annotate = '-'
-            self.json_data["project"].append({
+            self.json_data["packets"].append({
                     "timestamp": tokens[1],
                      "id": tokens[3],
                      "s": tokens[5],

@@ -42,8 +42,25 @@ class FileHandler:
                 with open("Current_Working_Project.json", "r") as jsonFile:
                     data = json.load(jsonFile)
                     data["Project_path"] = path
+    
                 with open("Current_Working_Project.json", "w") as jsonFile:
                     json.dump(data, jsonFile)
+                
+                # Create packet_data.json for user folder
+                with open(path+"/packet_data.json", "w") as jsonFile:
+                    json_string = {
+                                    "project": [
+                                        {
+                                            "timestamp": "-",
+                                            "id": "-",
+                                            "s": "-",
+                                            "dl": "-",
+                                            "channel": "-",
+                                            "annotate": "-"
+                                        }
+                                    ]
+                                }
+                    json.dump(json_string, jsonFile)
 
                 return 0
             # The user has tried to create an already existing directory

@@ -64,6 +64,14 @@ class FileHandler:
     
         with open("Current_Working_Project.json", "w") as jsonFile:
             json.dump(data, jsonFile)
+    
+    @staticmethod
+    def get_current_project():
+
+        with open("Current_Working_Project.json", "r") as jsonFile:
+            data = json.load(jsonFile)
+            return data["Project_path"]
+
 
     @staticmethod
     def make_preset_json(path):

@@ -10,6 +10,7 @@ from can_read import read_bus
 from can_write import write_bus
 from rsync import R_sync
 import re
+from archive import Archive
 
 
 app = Flask(__name__)
@@ -58,6 +59,16 @@ def upload_file():
 
 # Created for 11/2/2022 Demo, just skeleton for sync functionality
 app.config["UPLOAD_FILES"] = "/GitHub/CS4311_CANBusVisualizer_9/static/img/uploads/"
+
+@app.route("/archive_project", methods=["GET", "POST"])
+def archive_project():
+    if request.method == "POST":
+        source = request.form['sourcePath']
+        myarchive = Archive(source)
+        myarchive.archive()
+
+        return render_template('archive_project.html', Success="Archive Process Passed")
+    return render_template('archive_project.html', Success="")
 
 
 @app.route("/sync_project", methods=["GET", "POST"])
@@ -172,6 +183,17 @@ def writeToTable(packet):
 
 
 # Should access Json File of packets and edit Json file
+
+
+# This is the archive for the Project_Page Call this script with ajax from project_page.html when you push the button
+@app.route('/archive')
+def archive():
+    curr_project = FileHandler.get_current_project()
+    myarchive = Archive(curr_project)
+    myarchive.archive()
+    return render_template('project_page.html')
+
+
 @app.route('/edit')
 def edit():
     return render_template('project_page.html')

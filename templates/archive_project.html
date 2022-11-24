@@ -1,0 +1,31 @@
+
+
+
+
+<html>
+    <head>
+        <title>Archive Project</title>
+        <h1 style="font: 55; text-align: center; color: white">
+            <img 
+            src="{{ url_for('static', filename = 'img/UTEP_BLUE.png')}}" alt="logo" class="utep_logo"
+            />
+            <img 
+            src= "{{ url_for('static', filename = 'img/DEVCOM.png')}}" alt="logo" class="devcom_logo"
+            />
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        </h1>
+    </head>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='sync_project.css')}}">
+
+    <form action = "/archive_project" method = "POST" enctype="multipart/form-data">
+        <br><br>    
+        <label for="fname">Project to Archive: </label>
+        <input type="text" id="fname" name="sourcePath"><br><br>
+            <button type="submit "class="btn btn-primary">Archive</button>
+        <h2>{{Success}}</h2>
+    </form>
+
+    
+    <body>
+    </body>
+</html>

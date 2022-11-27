@@ -1,0 +1,17 @@
+[
+    {
+        "LockRequest": "idle"
+    },
+    {
+        "WindowPosition": 0,
+        "WindowMotion": "not_moving"
+    },
+    {
+        "WindowPosition": 0,
+        "WindowMotion": "not_moving"
+    },
+    {
+        "LockState": "not_moving",
+        "AntiTheftSystemActive": "not_moving"
+    }
+]

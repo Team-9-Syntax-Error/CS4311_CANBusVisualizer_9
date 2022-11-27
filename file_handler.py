@@ -41,12 +41,20 @@ class FileHandler:
                 FileHandler.update_current_project(path)
                 # Creating packet_data.json with preset Json dictionary 
                 FileHandler.make_preset_json(path)
+                #Creating blacklist for user
+                FileHandler.make_blacklist(path)
                 
                 return 0
             # The user has tried to create an already existing directory
             except FileExistsError:
                 messagebox.showerror(title="CAN Bus Visualizer", message="Folder Already Exists!")
         return -1
+
+
+    @staticmethod
+    def make_blacklist(path):
+        newfile = open(path+"/blacklist.txt", "w")
+        newfile.close()
 
     @staticmethod
     def update_current_project(path):

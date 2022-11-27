@@ -177,10 +177,9 @@ def writeToTable(packet):
         packet = str(packet)
         tokens = packet.split()
         dl = " ".join(tokens[8:15])
-        channel = tokens[17]
+        channel = tokens[-1]
         annotate = '-'
         data.append([tokens[1], tokens[3], tokens[5], dl, channel, annotate])
-        print("This is my data", data)
         # read_class.packet = None
 
 

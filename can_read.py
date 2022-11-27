@@ -34,7 +34,8 @@ class read_bus():
         with open("blacklist.txt", "r") as file:
             while (line := file.readline().rstrip()):
                 blacklist.append(line)
-        print(blacklist)
+        print()
+        print("Blacklist Contents:", blacklist)
         return blacklist
 
 
@@ -43,22 +44,20 @@ class read_bus():
 
         while True:
             message = self.bus.recv(4)
-            print("Boooooom: ", message)
-            print(" Reading:", self.bus.channel_info, " ...")
-            print(self.info)
-            #ERROR HAPPENING HERE AND NOT WRITING TO JSON
+            print("Reading:", self.bus.channel_info, " ...")
             self.info = self.mywrite.get_info()
             self.packet_name = self.mywrite.get_packet_name()
             self.msg_data = self.mywrite.get_msg_data()
 
-            print("This is the name:", self.packet_name)
-            print("This is the data:", self.msg_data)
             
             if message and self.info:
                 
-                print("Arbritration: ", self.info[1][0])
                 self.decoded = self.db.decode_message(self.info[1][0],  self.msg_data)
-                print("Decoded Message:", self.db.decode_message(message.arbitration_id, message.data))
+                print("----------------------------------")
+                print("Reading Packet...")
+                print("Decoded Success:", self.db.decode_message(message.arbitration_id, message.data))
+                print("----------------------------------")
+                print()
                 self.packet =  message
 
                 if self.packet:                
@@ -75,7 +74,7 @@ class read_bus():
             self.decoded_json_data.append(ast.literal_eval(self.decoded))
             json.dump(self.decoded_json_data, f, indent=4)
             print("Decoded Json Created...")
-
+            print()
 
     def writeJson(self, filename = "packet_data.json"):
 
@@ -102,6 +101,7 @@ class read_bus():
                       "annotate": annotate
               })
             json.dump(self.json_data, f, indent=4)
+            print()
             print("JSON Created...")
 
 

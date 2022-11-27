@@ -150,6 +150,7 @@ def edit_project():
 @app.route("/project_page", methods=["GET", "POST"])
 def project_page():
     # Creating thread to open socket for reading..
+    print()
     print("Ruinning Thread to recieve BUS")
     thread_read = Thread(target=read_class.receiveDBC)
     thread_read.start()
@@ -160,6 +161,7 @@ def project_page():
 # WRITE TO CAN BUS SCRIPT
 @app.route('/send')
 def send():
+    print("----------------------------------")
     print('Sending packet...')
     writting.sendDBC()
 
@@ -180,7 +182,6 @@ def writeToTable(packet):
         channel = tokens[-1]
         annotate = '-'
         data.append([tokens[1], tokens[3], tokens[5], dl, channel, annotate])
-        print("This is my data", data)
         # read_class.packet = None
 
 

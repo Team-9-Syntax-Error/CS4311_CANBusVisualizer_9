@@ -1,40 +1,16 @@
 {
     "packets": [
         {
-            "timestamp": 0.0005726814270019531,
-            "id": "0700",
+            "timestamp": 0.0071833133697509766,
+            "id": "0000",
             "s": "Tx",
             "dl": "00",
             "channel": "vcan0",
             "annotate": "-"
         },
         {
-            "timestamp": 0.0006499290466308594,
-            "id": "0700",
-            "s": "Tx",
-            "dl": "00",
-            "channel": "vcan0",
-            "annotate": "-"
-        },
-        {
-            "timestamp": 0.001367330551147461,
-            "id": "0700",
-            "s": "Tx",
-            "dl": "00",
-            "channel": "vcan0",
-            "annotate": "-"
-        },
-        {
-            "timestamp": 0.0011830329895019531,
-            "id": "0032",
-            "s": "Tx",
-            "dl": "01",
-            "channel": "vcan0",
-            "annotate": "-"
-        },
-        {
-            "timestamp": 0.0008485317230224609,
-            "id": "0700",
+            "timestamp": 0.0013921260833740234,
+            "id": "0000",
             "s": "Tx",
             "dl": "00",
             "channel": "vcan0",

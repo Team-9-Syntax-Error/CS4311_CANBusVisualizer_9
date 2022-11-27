@@ -1,11 +1,10 @@
 [
-    {},
-    {},
-    {},
     {
-        "Velocity": 3,
-        "CrashDetected": 1,
-        "EngineRunning": 3
+        "LockState": "not_moving",
+        "AntiTheftSystemActive": "not_moving"
     },
-    {}
+    {
+        "LockState": "not_moving",
+        "AntiTheftSystemActive": "not_moving"
+    }
 ]

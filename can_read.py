@@ -4,13 +4,12 @@ import os
 import json
 from can_write import write_bus
 import ast
+import time
 
 
-class read_bus(write_bus):
+class read_bus():
 
-    def __init__(self):
-
-
+    def __init__(self, writer_object):
 
         self.packet = None
         self.cwd = os.getcwd()
@@ -21,12 +20,11 @@ class read_bus(write_bus):
         self.decoded_json_data = []
 
         # Getting correcst DBC information form writer
-        mywrite = write_bus()
-        self.dbc_dictionary = mywrite.dbc_dictionary
-        self.packet_name = mywrite.packet_name  
-        self.info = mywrite.info
-        self.msg_data = mywrite.msg_data
-        #print(dictionary_list)
+        self.mywrite = writer_object
+        self.dbc_dictionary = self.mywrite.dbc_dictionary
+        self.packet_name = self.mywrite.packet_name  
+        self.info = self.mywrite.info
+        self.msg_data = self.mywrite.msg_data
         self.blacklist = self.generate_blacklist()
 
 
@@ -47,8 +45,19 @@ class read_bus(write_bus):
             message = self.bus.recv(4)
             print("Boooooom: ", message)
             print(" Reading:", self.bus.channel_info, " ...")
-            if message and self.packet_name not in self.blacklist:
-                self.decoded = self.db.decode_message(self.packet_name,  self.msg_data)
+            print(self.info)
+            #ERROR HAPPENING HERE AND NOT WRITING TO JSON
+            self.info = self.mywrite.get_info()
+            self.packet_name = self.mywrite.get_packet_name()
+            self.msg_data = self.mywrite.get_msg_data()
+
+            print("This is the name:", self.packet_name)
+            print("This is the data:", self.msg_data)
+            
+            if message and self.info:
+                
+                print("Arbritration: ", self.info[1][0])
+                self.decoded = self.db.decode_message(self.info[1][0],  self.msg_data)
                 print("Decoded Message:", self.db.decode_message(message.arbitration_id, message.data))
                 self.packet =  message
 
@@ -78,25 +87,14 @@ class read_bus(write_bus):
         with open(filename, "w", encoding = 'utf8') as f:
             self.packet = str(self.packet)
             tokens = self.packet.split()
-
-            dl = ""
-            myflag = True
-            for i in range(8,len(tokens)):
-                if myflag:
-                    for char in tokens[i]:
-                        if char == "C":
-                            myflag = False
-                            break
-                        else:
-                            dl+=str(char)
-                else:
-                    break
-                
             
+
+
+            timestamp = time.time() - float(tokens[1])
             channel = tokens[-1]
             annotate = '-'
             self.json_data["packets"].append({
-                    "timestamp": tokens[1],
+                    "timestamp": timestamp,
                      "id": tokens[3],
                      "s": tokens[5],
                      "dl": tokens[8],

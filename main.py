@@ -29,7 +29,8 @@ data = []
 
 
 # Classes for threads
-read_class = read_bus()
+writting = write_bus()
+read_class = read_bus(writting)
 
 
 # This is our Main Page / First Page that appears
@@ -160,7 +161,6 @@ def project_page():
 @app.route('/send')
 def send():
     print('Sending packet...')
-    writting = write_bus()
     writting.sendDBC()
 
     # Read packet from the reading Thread to update Table
@@ -180,6 +180,7 @@ def writeToTable(packet):
         channel = tokens[-1]
         annotate = '-'
         data.append([tokens[1], tokens[3], tokens[5], dl, channel, annotate])
+        print("This is my data", data)
         # read_class.packet = None
 
 

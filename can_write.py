@@ -16,10 +16,17 @@ class write_bus():
         self.db_msg = self.db.get_message_by_name("LockingRemoteControlRequest") # Gets message from DBC file
         self.msg_data= ""
         self.packet_name = ""
-        self.info = ""
-        
+        self.info = None
+    
+    def get_info(self):
+        print("reaturning this info:", self.info)
+        return self.info
+    
+    def get_packet_name(self):
+        return self.packet_name
 
-
+    def get_msg_data(self):
+        return self.msg_data
 
     def sendDBC(self):
         
@@ -27,10 +34,14 @@ class write_bus():
 
         dictionary_list = list(self.dbc_dictionary.items())
         self.packet_name, self.info = random.choice(dictionary_list)
-        print(self.packet_name)
+
+        print("THIS IS OUR RANDOM CHOICE:", self.packet_name)
         self.db_msg = self.db.get_message_by_name(self.packet_name) # Gets message from DBC file
+
+
         print(self.info[0][0])
         self.msg_data = self.db_msg.encode(self.info[0][0])
+
         self.msg = can.Message(arbitration_id=self.info[1][0], data=self.msg_data, is_extended_id=False)
 
         try:

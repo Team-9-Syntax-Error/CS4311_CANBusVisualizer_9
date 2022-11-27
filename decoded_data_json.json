@@ -1,17 +1,11 @@
 [
+    {},
+    {},
+    {},
     {
-        "LockRequest": "idle"
+        "Velocity": 3,
+        "CrashDetected": 1,
+        "EngineRunning": 3
     },
-    {
-        "WindowPosition": 0,
-        "WindowMotion": "not_moving"
-    },
-    {
-        "WindowPosition": 0,
-        "WindowMotion": "not_moving"
-    },
-    {
-        "LockState": "not_moving",
-        "AntiTheftSystemActive": "not_moving"
-    }
+    {}
 ]

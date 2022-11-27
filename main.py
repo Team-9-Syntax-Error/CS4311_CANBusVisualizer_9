@@ -66,7 +66,9 @@ def archive_project():
         source = request.form['sourcePath']
         myarchive = Archive(source)
         myarchive.archive()
-
+        # Create if statement that checks the Archive was filled.
+        #
+        #
         return render_template('archive_project.html', Success="Archive Process Passed")
     return render_template('archive_project.html', Success="")
 

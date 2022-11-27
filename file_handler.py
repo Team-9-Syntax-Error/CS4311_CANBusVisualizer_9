@@ -58,10 +58,13 @@ class FileHandler:
                 path: the new folder path of the user
         """
 
+        # This code can NOT be substitued with get_curr_project()
+        # This code Reads the path of the c.w.p. json file
         with open("Current_Working_Project.json", "r") as jsonFile:
                     data = json.load(jsonFile)
                     data["Project_path"] = path
-    
+
+        # This code dumps the new path to the c.w.p. json file
         with open("Current_Working_Project.json", "w") as jsonFile:
             json.dump(data, jsonFile)
     
@@ -76,7 +79,7 @@ class FileHandler:
     @staticmethod
     def make_preset_json(path):
         """
-        Makes premade and writes Json Dictionary for the file packet_data.json in the users directory
+        Makes and writes Json Dictionary for the file packet_data.json in the users directory
 
         Parameters:
                 path: the folder path of the user

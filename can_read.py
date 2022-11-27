@@ -2,6 +2,7 @@ import can
 import cantools
 import os
 import json
+from can_write import write_bus
 
 class read_bus():
 
@@ -10,9 +11,9 @@ class read_bus():
         self.packet = None
 
         self.cwd = os.getcwd()
-        self.db = cantools.db.load_file(self.cwd + "/dbc_files/motohawk.dbc") 
+        self.db = cantools.db.load_file(self.cwd + "/dbc_files/comfort.dbc") 
         self.bus = can.interface.Bus(bustype='socketcan', channel='vcan0', bitrate = 250000)
-        self.db_msg = self.db.get_message_by_name("ExampleMessage") # Gets message from DBC file
+        #self.db_msg = self.db.get_message_by_name("ExampleMessage") # Gets message from DBC file
 
         self.json_data = {"packets" : []}
         self.decoded_json_data = []

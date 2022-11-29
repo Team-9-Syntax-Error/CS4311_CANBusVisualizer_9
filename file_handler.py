@@ -2,6 +2,7 @@ import json
 import sys
 import csv
 import os
+import xml.etree.cElementTree as ET
 from PyQt5.QtWidgets import QApplication, QFileDialog
 from tkinter import messagebox
 
@@ -129,6 +130,26 @@ class FileHandler:
         return -1
 
     @staticmethod
+    def export_to_xml(py_dict):
+        """
+        Exports python dictionary into user-defined directory as a .XML file.
+
+        Parameters:
+                py_dict (dict()): Python dictionary data
+
+        Returns:
+                0 if successful, else -1.
+        """
+        # Get file information
+        file_info = FileHandler.prompt_file_save()
+        # If file saved
+        if file_info:
+            # Create XML file
+            FileHandler.create_file(file_info[0], file_info[2], py_dict, file_name=file_info[1])
+            return 0
+        return -1
+
+    @staticmethod
     def create_file(path, file_type, file_contents, file_name="place_holder"):
         """
         File creator
@@ -145,6 +166,9 @@ class FileHandler:
         # Create .csv file
         if file_type == ".csv":
             FileHandler.create_csv_file(path, file_name, file_contents)
+        # Create .xml file
+        if file_type == ".xml":
+            FileHandler.create_xml_file(path, file_name, file_contents)
 
     @staticmethod
     def create_dir(dir_name, path):
@@ -172,6 +196,16 @@ class FileHandler:
             writer = csv.DictWriter(csv_file, fieldnames=FileHandler.create_field_names(py_dict))
             writer.writeheader()
             writer.writerow(py_dict)
+
+    @staticmethod
+    def create_xml_file(path, file_name, py_dict, root_name="Project_Configuration"):
+        root = ET.Element(root_name)
+        for key in list(py_dict.keys()):
+            e = ET.SubElement(root, key)
+            for key_n in list(py_dict[key].keys()):
+                ET.SubElement(e, key_n).text = py_dict[key][key_n]
+        tree = ET.ElementTree(root)
+        tree.write(path+"/"+file_name+".xml")
 
     @staticmethod
     def prompt_file_open():

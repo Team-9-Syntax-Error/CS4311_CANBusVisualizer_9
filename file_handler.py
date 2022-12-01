@@ -1,4 +1,5 @@
 import json
+import subprocess
 import sys
 import csv
 import os
@@ -30,10 +31,8 @@ class FileHandler:
         while True:
             try:
                 # Prompt user for path
-                path = FileHandler.prompt_dir()
-                # User cancel or close, exit function
-                if not path:
-                    break
+                p = subprocess.run(["python", "prompt_directory.py"], capture_output=True)
+                path = p.stdout.decode().strip()
                 # Create project directory and update path with new directory
                 path = FileHandler.create_dir(project_name, path)
                 # Create config.json file
@@ -53,6 +52,8 @@ class FileHandler:
             # The user has tried to create an already existing directory
             except FileExistsError:
                 messagebox.showerror(title="CAN Bus Visualizer", message="Folder Already Exists!")
+            except FileNotFoundError:
+                break
         return -1
 
 
@@ -195,6 +196,7 @@ class FileHandler:
                 path str: Path of the directory
         """
         path = path + "/" + dir_name
+        print("Current Path: "+path)
         os.mkdir(path)
         return path
 

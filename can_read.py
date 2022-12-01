@@ -68,6 +68,16 @@ class read_bus():
     #The code below handles writing to JSON --> Decoded information and raw information
 
     def writeDecodedJson(self, filename = "decoded_data_json.json"):
+
+        with open("Current_Working_Project.json", "r") as jsonFile:
+                    data = json.load(jsonFile)
+                    project_path = data["Project_path"]
+
+        filename = project_path + "/"+ filename
+        with open(filename, "w", encoding = 'utf8') as f:
+            self.packet = str(self.packet)
+            tokens = self.packet.split()
+
         with open(filename, "w", encoding = 'utf8') as f:
             self.decoded = str(self.decoded)
             tokens = self.decoded.split()
@@ -86,8 +96,6 @@ class read_bus():
         with open(filename, "w", encoding = 'utf8') as f:
             self.packet = str(self.packet)
             tokens = self.packet.split()
-            
-
 
             timestamp = time.time() - float(tokens[1])
             channel = tokens[-1]

@@ -45,78 +45,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.navbar {
-  background-color: gray;
-  overflow: hidden;
-}
-
-/* Config for dropdown options*/
-.navbar a {
-  background-color: gray;
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* Dropdown block (Horizontal or vertical) */
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-/* Dropdown button properties */
-.dropdown .dropbtn 
-{
-  font-size: 16px;  
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
-
-.navbar a:hover, .dropdown:hover .dropbtn 
-{
-  background-color: cornflowerblue;
-}
-
-
-/* Content inside the dropdown (Text)*/
-.dropdown-content 
-{
-  display: none;
-  position: relative;
-  background-color: white;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a 
-{
-  float: none;
-  color: white;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover 
-{
-  background-color: cornflowerblue;
-}
-
-.dropdown:hover .dropdown-content 
-{
-  display: block;
-}
-
 .table 
 {
   text-align: center;
@@ -204,43 +132,26 @@ border-radius: 10px;
 background: #88ba1c;  
 }
 
-/*POPUP STUFF */
-
-/* The popup form - hidden by default */
-.form-popup {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  right: 15px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
+.topnav {
+  overflow: hidden;
+  background-color: gray;
 }
 
-/* Add styles to the form container */
-.form-container {
-  max-width: 300px;
-  padding: 10px;
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
   background-color: #6da9e6;
+  color: black;
 }
 
-/* Set a style for the submit/login button */
-.form-container .btn {
+.topnav a.active {
   background-color: #04AA6D;
   color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
 }
-
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: red;
-}
-
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
-} 

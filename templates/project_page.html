@@ -8,68 +8,12 @@
    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <body>
 
-      <div class="navbar">
-
-         <!-- DROPDOWN FOR FILE -->
-         <div class="dropdown">
-           <button class="dropbtn">File_Test* 
-             <i class="fa fa-caret-down"></i>
-           </button>
-           <div class="dropdown-content">
-             <a href="#">Save Project</a>
-             <a href="#">Open Saved Packets</a>
-             <a href="edit_config">Edit Configurations</a>
-           </div>
-         </div> 
-
-         <!-- DROPDOWN FOR VIEW -->
-         <div class="dropdown">
-            <button class="dropbtn">View 
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a href="#">Filter Packets</a>
-              <a href="#">Sort Packets</a>
-            </div>
-          </div> 
-
-          <!-- DROPDOWN FOR PACKETS -->
-          <div class="dropdown">
-            <button class="dropbtn">Packets 
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a id = "edit" onclick="myfunction_clickevent_edit(); openForm();">Replay Packet</a>
-
-              <!--
-              <div class="form-popup" id="myForm">
-                <form action="/project_page.html" class="form-container">
-                  <h2>Edit Packet</h2>
-
-                  <label for="name"><b>Name:</b></label>
-                  <input type="text" placeholder="Name" name="name" required>
-
-                  <label for="id"><b>ID:</b></label>
-                  <input type="text" placeholder="ID" name="id" required>
-
-                  <label for="data"><b>Data:</b></label>
-                  <input type="text" placeholder="Data" name="data" required>
-
-                  <button type="submit" class="btn">Accept</button>
-                  <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                </form>
-              </div>
-              -->
-
-              <a id = "save" onclick="myfunction_clickevent_save()">Save Packet</a>
-              <a id = "annotate" onclick="myfunction_clickevent_annotate()">Annotate Packet</a>
-            </div>
-
-          </div> 
-        </div>
+  <div class="topnav">
+  <a href="#file">File</a>
+  <a href="#packets">Packets</a>
+</div> 
 
       <!-- CONTAINER FOR PACKET TABLE -->
-      <!-- <button id = "replay" onclick="myfunction_clickevent_replay()">Replay Packet</button> -->
       <div class="container_table" id="box">
 
 <style> th{ 
@@ -156,9 +100,9 @@ $.ajax({
 
     for (var i = 0; i< data.length; i++){
       value = value.toLowerCase()
-      var annotate = data[i].annotate.toLowerCase()
+      var id = data[i].id.toLowerCase()
 
-      if (annotate.includes(value)){ 
+      if (id.includes(value)){ 
         filteredData.push(data[i])
       }
 

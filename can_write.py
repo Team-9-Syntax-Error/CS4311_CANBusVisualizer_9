@@ -77,7 +77,6 @@ class write_bus():
                             self.sig_start = 0
                         self.sig_name = signal.name
                         signals[self.sig_name] = int(self.sig_start) 
-
             if len(signals) > 0:
                 self.dbc_dictionary[self.msg_name] = [[signals],[self.msg_id, self.msg_length, self.sender]]
 

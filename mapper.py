@@ -23,10 +23,11 @@ class Mapper():
         print(self.project_path)
 
         with open(self.project_path + "/decoded_data_json.json") as f:
-            node = json.loads(f)
+            node = json.load(f)
         print(node)
-        
+
         for node_name in node[0].keys():
+            print(node_name)
             if node_name not in self.map:
                 return node_name
         return None
@@ -36,11 +37,7 @@ class Mapper():
                 json.dump(self.map, jsonFile)
 
     def get_project_path(self):
-        with open("CS4311_CANBusVisualizer_9/Current_Working_Project.json", "r") as jsonFile:
+        with open("Current_Working_Project.json", "r") as jsonFile:
                     data = json.load(jsonFile)
                     return data["Project_path"]
 
-
-
-mymapper = Mapper()
-mymapper.grab_nodes()

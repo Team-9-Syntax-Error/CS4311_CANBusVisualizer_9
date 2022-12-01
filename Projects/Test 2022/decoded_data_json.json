@@ -4,7 +4,7 @@
         "AntiTheftSystemActive": "not_moving"
     },
     {
-        "LockState": "not_moving",
+        "Windowstate": "not_moving",
         "AntiTheftSystemActive": "not_moving"
     }
 ]

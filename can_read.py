@@ -29,9 +29,11 @@ class read_bus():
 
 
     def generate_blacklist(self):
+
+        path = self.get_project_path()
         
         blacklist = []
-        with open("blacklist.txt", "r") as file:
+        with open(path+"/blacklist.txt", "r") as file:
             while (line := file.readline().rstrip()):
                 blacklist.append(line)
         print()
@@ -112,5 +114,8 @@ class read_bus():
             print()
             print("JSON Created...")
 
-
+    def get_project_path(self):
+        with open("Current_Working_Project.json", "r") as jsonFile:
+                    data = json.load(jsonFile)
+                    return data["Project_path"]
 

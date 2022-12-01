@@ -11,7 +11,8 @@
   <div class="topnav">
   <a href="#file">File</a>
   <a href="#packets">Packets</a>
-</div> 
+      <a href="#export" id="export" class="export" onclick='myfunction_clickevent_export()'>Export</a>
+</div>
 
       <!-- CONTAINER FOR PACKET TABLE -->
       <div class="container_table" id="box">
@@ -232,6 +233,12 @@ function closeForm() {
 
 </script>
 
+<script>
+  function myfunction_clickevent_export(){
+      $.ajax({
+          url:"/export",
+          context: document.body});}
+</script>
 
 
 <script src="https://unpkg.com/gojs/release/go-debug.js"></script>

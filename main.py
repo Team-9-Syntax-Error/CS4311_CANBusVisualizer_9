@@ -152,6 +152,7 @@ def project_page():
     # Creating thread to open socket for reading..
     print()
     print("Ruinning Thread to recieve BUS")
+    read_class.generate_blacklist()
     thread_read = Thread(target=read_class.receiveDBC)
     thread_read.start()
 

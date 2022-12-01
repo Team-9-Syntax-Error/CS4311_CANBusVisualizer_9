@@ -1,0 +1,44 @@
+{
+    "packets": [
+        {
+            "timestamp": 0.019325733184814453,
+            "id": "0065",
+            "s": "Tx",
+            "dl": "00",
+            "channel": "vcan0",
+            "annotate": "-"
+        },
+        {
+            "timestamp": 0.001978635787963867,
+            "id": "0065",
+            "s": "Tx",
+            "dl": "00",
+            "channel": "vcan0",
+            "annotate": "-"
+        },
+        {
+            "timestamp": 0.002182483673095703,
+            "id": "0001",
+            "s": "Tx",
+            "dl": "00",
+            "channel": "vcan0",
+            "annotate": "-"
+        },
+        {
+            "timestamp": 0.0018012523651123047,
+            "id": "0064",
+            "s": "Tx",
+            "dl": "00",
+            "channel": "vcan0",
+            "annotate": "-"
+        },
+        {
+            "timestamp": 0.002076864242553711,
+            "id": "0064",
+            "s": "Tx",
+            "dl": "00",
+            "channel": "vcan0",
+            "annotate": "-"
+        }
+    ]
+}

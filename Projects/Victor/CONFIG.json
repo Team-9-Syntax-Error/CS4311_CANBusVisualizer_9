@@ -1,0 +1,12 @@
+{
+  "project_name": "Victor",
+  "project_initials": "VH",
+  "analyst_initials": "VH",
+  "event_name": "test",
+  "event_date": "11/30/2022",
+  "can_connector_id": "1111",
+  "vehicle_id": "1111",
+  "baud_rate": "9200",
+  "dbc_file_name": "ford.dbc",
+  "bl_file_name": "blacklist.txt"
+}

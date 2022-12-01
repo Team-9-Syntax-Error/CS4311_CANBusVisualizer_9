@@ -1,0 +1,21 @@
+[
+    {
+        "KeyUp": 0,
+        "KeyDown": 0
+    },
+    {
+        "KeyUp": 0,
+        "KeyDown": 0
+    },
+    {
+        "LockRequest": "idle"
+    },
+    {
+        "WindowPosition": 0,
+        "WindowMotion": "not_moving"
+    },
+    {
+        "WindowPosition": 0,
+        "WindowMotion": "not_moving"
+    }
+]

@@ -25,7 +25,7 @@ class read_bus():
         self.packet_name = self.mywrite.packet_name  
         self.info = self.mywrite.info
         self.msg_data = self.mywrite.msg_data
-        self.blacklist = self.generate_blacklist()
+        self.blacklist = []
 
 
     def generate_blacklist(self):
@@ -38,7 +38,7 @@ class read_bus():
                 blacklist.append(line)
         print()
         print("Blacklist Contents:", blacklist)
-        return blacklist
+        self.blacklist = blacklist
 
 
 

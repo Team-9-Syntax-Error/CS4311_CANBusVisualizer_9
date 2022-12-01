@@ -1,1 +1,20 @@
-{"packets": [{"timestamp": "-", "id": "-", "s": "-", "dl": "-", "channel": "-", "annotate": "-"}]}
+{
+    "packets": [
+        {
+            "timestamp": 0.018595457077026367,
+            "id": "0001",
+            "s": "Tx",
+            "dl": "00",
+            "channel": "vcan0",
+            "annotate": "-"
+        },
+        {
+            "timestamp": 0.002096414566040039,
+            "id": "0065",
+            "s": "Tx",
+            "dl": "00",
+            "channel": "vcan0",
+            "annotate": "-"
+        }
+    ]
+}

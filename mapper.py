@@ -6,15 +6,17 @@ class Mapper():
         self.map = []
         self.key = 0
         self.project_path = self.get_project_path()
+        self.node_names = []
     
     # Inserts new data into map.json
     def build_map(self):
         
-        node_names = self.grab_nodes()
+        self.node_names.extend(self.grab_nodes())
 
         # Can only pass if, if not None
-        if node_names:
-            for node_name in node_names: 
+        print(self.node_names)
+        if self.node_names:
+            for node_name in self.node_names: 
                 data =  {"key":self.key , "parent": 0, "name": node_name}
                 self.key+=1
                 self.map.append(data)

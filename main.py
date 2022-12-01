@@ -11,7 +11,7 @@ from can_write import write_bus
 from rsync import R_sync
 import re
 from archive import Archive
-
+from mapper import Mapper
 
 app = Flask(__name__)
 
@@ -171,6 +171,9 @@ def send():
     while not packet:
         packet = read_class.packet
     writeToTable(packet)
+    
+    mymapper=Mapper()
+    mymapper.build_map()
 
     return render_template('project_page.html', headings=headings, data=data)
 

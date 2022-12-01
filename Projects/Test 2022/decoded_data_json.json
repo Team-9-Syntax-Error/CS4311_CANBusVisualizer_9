@@ -1,10 +1,9 @@
 [
     {
-        "LockState": "not_moving",
-        "AntiTheftSystemActive": "not_moving"
+        "LockRequest": "idle"
     },
     {
-        "Windowstate": "not_moving",
-        "AntiTheftSystemActive": "not_moving"
+        "KeyUp": 0,
+        "KeyDown": 0
     }
 ]

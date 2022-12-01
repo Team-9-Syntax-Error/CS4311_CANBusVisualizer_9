@@ -146,7 +146,7 @@ class FileHandler:
         return -1
 
     @staticmethod
-    def export_to_xml(py_dict):
+    def export(py_dict):
         """
         Exports python dictionary into user-defined directory as a .XML file.
 
@@ -165,6 +165,24 @@ class FileHandler:
             return 0
         return -1
 
+    @staticmethod
+    def create_dicts():
+        py_dict = {}
+        path = FileHandler.get_current_project()
+        j_file = open(path+"/CONFIG.json", 'r')
+        # d_file = open(path+"/decoded_data_json.json", 'r')
+        # m_file = open(path+"/map.json", 'r')
+        # p_file = open(path+"/packet_data.json", 'r')
+        data_dict_j = json.loads(j_file.read())
+        # data_dict_d = json.loads(d_file.read())
+        # data_dict_m = json.loads(m_file.read())
+        # data_dict_p = json.loads(p_file.read())
+        py_dict["Project_Config"] = data_dict_j
+        # py_dict["Decoded"].append(data_dict_d)
+        # py_dict["Map"].append(data_dict_m)
+        # py_dict["Packet_Data"] = data_dict_p
+        return py_dict
+    
     @staticmethod
     def create_file(path, file_type, file_contents, file_name="place_holder"):
         """
@@ -233,9 +251,13 @@ class FileHandler:
     @staticmethod
     def prompt_file_save():
         app = QApplication(sys.argv)
-        path = QFileDialog.getSaveFileName(filter="CSV files (*.csv);; XML files (*.xml)")[0]
-        return FileHandler.parse_file_info(path)
-
+        path = QFileDialog.getSaveFileName(filter="CSV files (*.csv);; XML files (*.xml)")
+        if path[1] == 'XML files (*.xml)':
+            new_path = path[0]+".xml"
+        elif path[1] == 'CSV files (*.csv)':
+            new_path = path[0]+".csv"
+        return FileHandler.parse_file_info(new_path)
+    
     @staticmethod
     def prompt_dir():
         app = QApplication(sys.argv)

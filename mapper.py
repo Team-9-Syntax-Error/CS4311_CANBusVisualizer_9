@@ -1,11 +1,11 @@
 import json
 
 
-
-class mapper:
+class Mapper():
     def __init__(self):
         self.map = []
         self.key = 0
+        self.project_path = self.get_project_path()
     
     # Inserts new data into map.json
     def build_map(self):
@@ -20,14 +20,27 @@ class mapper:
             
     # Grabs name of the node
     def grab_nodes(self):
-        f = open("decoded_data_json.json")
-        node = json.loads(f)
+        print(self.project_path)
 
-        for node_name in node.keys():
+        with open(self.project_path + "/decoded_data_json.json") as f:
+            node = json.loads(f)
+        print(node)
+        
+        for node_name in node[0].keys():
             if node_name not in self.map:
                 return node_name
         return None
 
     def insert_node(self):
-        with open("CS4311_CANBusVisualizer_9/map.json", "w") as jsonFile:
+        with open(self.project_path + "/map.json", "w") as jsonFile:
                 json.dump(self.map, jsonFile)
+
+    def get_project_path(self):
+        with open("CS4311_CANBusVisualizer_9/Current_Working_Project.json", "r") as jsonFile:
+                    data = json.load(jsonFile)
+                    return data["Project_path"]
+
+
+
+mymapper = Mapper()
+mymapper.grab_nodes()

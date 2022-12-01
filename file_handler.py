@@ -44,6 +44,10 @@ class FileHandler:
                 FileHandler.make_preset_json(path)
                 #Creating blacklist for user
                 FileHandler.make_blacklist(path)
+                #Creating decoded_data.json for user
+                FileHandler.make_decoded_data(path)
+                #Create Map for user
+                FileHandler.make_map(path)
                 
                 return 0
             # The user has tried to create an already existing directory
@@ -51,6 +55,17 @@ class FileHandler:
                 messagebox.showerror(title="CAN Bus Visualizer", message="Folder Already Exists!")
         return -1
 
+
+
+    @staticmethod
+    def make_map(path):
+        newfile = open(path+"/map.json", "w")
+        newfile.close()
+    
+    @staticmethod
+    def make_decoded_data(path):
+        newfile = open(path+"/decoded_data_json.json", "w")
+        newfile.close()
 
     @staticmethod
     def make_blacklist(path):

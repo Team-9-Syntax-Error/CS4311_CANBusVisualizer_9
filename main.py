@@ -218,6 +218,13 @@ def replay():
 def save():
     return render_template('project_page.html')
 
+
+@app.route('/export')
+def export():
+    FileHandler.export(FileHandler.create_dicts())
+    return render_template('project_page.html', headings=headings, data=data)
+
+
 @app.route('/project_sync', methods=['GET','POST'])
 def r_sync():
 

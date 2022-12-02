@@ -1,5 +1,20 @@
 # CS4311_CANBusVisualizer_9
 
+
+|     Working   |     Buggy     |Comments|
+|:-------------:|:-------------:| :-----:|
+| *Rsync*       |               |        |
+| *Export*      |               |        |
+|               | *Json Server* | Resetting software doesnt stop json server|
+| *Archive*     |               |        |
+|               | *Graph*       | Not dynamically updating |
+|               | *Table*       | Need to refresh to get updated table|
+| *Filter*      |               |         |
+|*Atuorecover*  |               |         |
+
+
+
+
 ## Installing Dependencies
 ```bash
 pip install python-can

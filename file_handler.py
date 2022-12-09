@@ -31,8 +31,7 @@ class FileHandler:
         while True:
             try:
                 # Prompt user for path
-                p = subprocess.run(["python", "prompt_directory.py"], capture_output=True)
-                path = p.stdout.decode().strip()
+                path = FileHandler.prompt_dir()
                 # Create project directory and update path with new directory
                 path = FileHandler.create_dir(project_name, path)
                 # Create config.json file
